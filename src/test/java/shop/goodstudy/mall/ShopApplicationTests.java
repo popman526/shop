@@ -1,4 +1,4 @@
-package net.study.springbootdemo;
+package shop.goodstudy.mall;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

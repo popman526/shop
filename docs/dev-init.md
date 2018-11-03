@@ -5,30 +5,30 @@
 * 스프링 부트 설정
 
 ## 1.	JDK 설치
-https://www.oracle.com/technetwork/java/javase/downloads/index.html
-우리는 JDK 11 다운로드
-JDK 설치 후 환경 변수 path 설정
+https://www.oracle.com/technetwork/java/javase/downloads/index.html  
+우리는 JDK 11 다운로드  
+JDK 설치 후 환경 변수 path 설정  
 
 
 ## 2.	이클립스 설치 
-https://www.eclipse.org/downloads/packages/
-Eclipse IDE for Java EE Developers 의 64-bit 다운로드
-JDK 11 호환을 위한 플러그인 설치
-Help - Eclipse Marketplace
-java 11로 검색
-Java 11 Support for Eclipse 설치
+https://www.eclipse.org/downloads/packages/  
+Eclipse IDE for Java EE Developers 의 64-bit 다운로드  
+JDK 11 호환을 위한 플러그인 설치  
+Help - Eclipse Marketplace  
+java 11로 검색  
+Java 11 Support for Eclipse 설치  
 
 
 ## 3.	이클립스 기본 설정
-Window - Preference 검색 텍스트 박스 'enco' 로 검색
-아래 모든 설정을 UTF-8로 설정
-Content Types, Workspace, Css Files, HTML Files, JSP Files
+Window - Preference 검색 텍스트 박스 'enco' 로 검색  
+아래 모든 설정을 UTF-8로 설정  
+Content Types, Workspace, Css Files, HTML Files, JSP Files  
 
 
 ## 4.	STS 플러그인 설정 
-Help - Eclipse Marketplace
-sts 로 검색
-Spring Tools 4 설치
+Help - Eclipse Marketplace  
+sts 로 검색  
+Spring Tools 4 설치  
 
 
 ## 5.	spring boot 시작
@@ -36,12 +36,12 @@ Spring Tools 4 설치
 ### 1)	이클립스로 시작
 New - Spring Starter Project
  
-JAVA version : 11
-Type : Maven
-Packaging : Jar
-Group : shop.goodstudy
-Artifact : shoppingmall
-Package : shop.goodstudy.shoppingmall
+JAVA version : 11  
+Type : Maven  
+Packaging : Jar  
+Group : shop.goodstudy  
+Artifact : mall  
+Package : shop.goodstudy.mall  
 
 Spring boot version : 2.0.6
 Dependencies : Web
@@ -78,14 +78,14 @@ HelloController 작성
 ## 7.	War 패키지로 바꿔보자.
 
 ### 1)	war 로 설정
-pom.xml에서 <packaging>war</packaging>
-war로 패키지로도 직접 실행이 가능하다.
+pom.xml에서 <packaging>war</packaging>  
+war로 패키지로도 직접 실행이 가능하다.  
 
 ### 2)	tomcat 추가
-eclipse 서버에 tomcat 추가한다.
+eclipse 서버에 tomcat 추가한다.  
 
 ### 3)	Context root 설정
-프로젝트 Properties - Web Project setting
+프로젝트 Properties - Web Project setting  
 Context root : /
 
 ### 4)	스프링 프레임워크 인식
