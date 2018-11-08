@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shop.goodstudy.mall.example.product.mapper.ProductMapper">
+
+	<select id="findAllProduct" resultType="product">
+		SELECT 
+			ID
+			, NAME
+			, STATUS
+			, PRICE
+		FROM PRODUCT
+	</select>
+
+	<select id="findById" resultType="product">
+		SELECT 
+			ID
+			, NAME
+			, STATUS
+			, PRICE
+		FROM PRODUCT
+		WHERE ID = #{id}
+	</select>
+	
+	<insert id="addProduct" parameterType="product" >
+		INSERT INTO PRODUCT (
+			NAME
+			, STATUS
+			, PRICE
+		) VALUES (
+			#{name}
+			, #{status}
+			, #{price}
+		)
+	</insert>
+	
+	<update id="modifyProduct" parameterType="product" >
+		UPDATE PRODUCT 
+		SET
+			NAME = #{name}
+			, STATUS = #{status}
+			, PRICE = #{price}
+		WHERE ID = #{id}
+	</update>
+</mapper>
