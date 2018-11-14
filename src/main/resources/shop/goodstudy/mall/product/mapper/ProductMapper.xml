@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shop.goodstudy.mall.product.mapper.ProductMapper">
+
+    <select id="selectProductByPrdNo" resultType="product">
+        SELECT PRD_NO
+              ,PRD_DIV_CD
+              ,PRD_TYP_CD
+              ,PRD_STAT_CD
+              ,SALE_STRT_DTIME
+              ,SALE_END_DTIME
+              ,PRD_NM
+              ,MIN_QTY
+              ,MAX_QTY
+              ,REG_ID
+              ,REG_DTIME
+              ,MOD_ID
+              ,MOD_DTIME
+          FROM shops.GD_PRD_BASE_INFO
+         WHERE PRD_NO = #{prd_no}
+    </select>
+
+    <select id="selectAllProduct" resultType="product">
+        SELECT PRD_NO
+              ,PRD_DIV_CD
+              ,PRD_TYP_CD
+              ,PRD_STAT_CD
+              ,SALE_STRT_DTIME
+              ,SALE_END_DTIME
+              ,PRD_NM
+              ,MIN_QTY
+              ,MAX_QTY
+              ,REG_ID
+              ,REG_DTIME
+              ,MOD_ID
+              ,MOD_DTIME
+          FROM shops.GD_PRD_BASE_INFO
+    </select>
+
+    <insert id="insertProduct">
+      INSERT INTO shops.GD_PRD_BASE_INFO (
+             PRD_DIV_CD
+            ,PRD_TYP_CD
+            ,PRD_STAT_CD
+            ,SALE_STRT_DTIME
+            ,PRD_NM
+            ,MIN_QTY
+            ,MAX_QTY
+            ,REG_DTIME
+      ) VALUES (
+             #{prd_div_cd}
+            ,#{prd_typ_cd}
+            ,#{prd_stat_cd}
+            ,now()
+            ,#{prd_nm}
+            ,#{min_qty}
+            ,#{max_qty}
+            ,now()
+      )
+    </insert>
+
+</mapper>

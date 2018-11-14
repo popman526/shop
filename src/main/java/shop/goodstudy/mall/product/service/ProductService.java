@@ -1,8 +1,8 @@
-package shop.goodstudy.mall.example.product.service;
+package shop.goodstudy.mall.product.service;
 
 import java.util.List;
 
-import shop.goodstudy.mall.example.product.model.Product;
+import shop.goodstudy.mall.product.model.Product;
 
 public interface ProductService {
 	Product findById(Long id);
