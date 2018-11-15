@@ -18,9 +18,8 @@ public class ProductServiceImpl implements ProductService {
 	ProductMapper productMapper;
 
 	@Override
-	public Product findProductById(Long product_id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Product selectProductByProductId(Long product_id) {
+		return productMapper.selectProductByProductId(product_id);
 	}
 
 	@Override
@@ -29,8 +28,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public int addProduct(Product product) {
-		return productMapper.addProduct(product);
+	public int insertProduct(Product product) {
+		return productMapper.insertProduct(product);
 	}
 
 	@Override

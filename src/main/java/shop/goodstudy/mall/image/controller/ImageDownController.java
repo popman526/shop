@@ -16,10 +16,19 @@ public class ImageDownController {
 	@Autowired
 	private ImageMapper imageMapper;
 
-	@GetMapping("/product/mainImageDown")
-	public ModelAndView mainImageDown(HttpServletRequest request, ModelAndView mav) {
+	@GetMapping("/product/downloadMainImage")
+	public ModelAndView downloadMainImage(HttpServletRequest request, ModelAndView mav) {
 		int product_id=Integer.parseInt((request.getParameter("product_id")));
-		Image image= imageMapper.mainImageDown(product_id);
+		Image image= imageMapper.downloadMainImage(product_id);
+		mav.addObject("imagefile", image.getImagefile());
+		mav.setViewName("downloadview");
+		return mav;
+	}
+	
+	@GetMapping("/product/downloadContentImage")
+	public ModelAndView downloadContentImage(HttpServletRequest request, ModelAndView mav) {
+		int image_id=Integer.parseInt((request.getParameter("image_id")));
+		Image image= imageMapper.downloadContentImage(image_id);
 		mav.addObject("imagefile", image.getImagefile());
 		mav.setViewName("downloadview");
 		return mav;

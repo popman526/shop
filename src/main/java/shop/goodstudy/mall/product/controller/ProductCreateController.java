@@ -37,7 +37,7 @@ public class ProductCreateController {
     	
         Product product = new Product(request.getParameter("name"), Long.parseLong(request.getParameter("state")), 
         		Long.parseLong(request.getParameter("price")), customer.getCustomer_id());
-        productService.addProduct(product);
+        productService.insertProduct(product);
         
         List<MultipartFile> filelist = mRequest.getFiles("file");
 		Iterator<MultipartFile> it = filelist.iterator();

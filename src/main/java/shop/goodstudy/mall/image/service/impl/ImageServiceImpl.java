@@ -23,13 +23,18 @@ public class ImageServiceImpl implements ImageService {
 	}
 
 	@Override
-	public Image mainImageDown(int product_id) {
-		return imageMapper.mainImageDown(product_id);
+	public Image downloadMainImage(int product_id) {
+		return imageMapper.downloadMainImage(product_id);
 	}
 
 	@Override
-	public List<Image> findAllImageByProduct_Id(long product_id) {
-		return imageMapper.findAllImageByProduct_Id(product_id);
+	public List<Image> selectAllImageIdByProductId(long product_id) {
+		return imageMapper.selectAllImageIdByProductId(product_id);
+	}
+
+	@Override
+	public Image downloadContentImage(int image_id) {
+		return imageMapper.downloadContentImage(image_id);
 	}
 	
 }

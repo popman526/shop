@@ -5,8 +5,8 @@ import java.util.List;
 import shop.goodstudy.mall.product.model.Product;
 
 public interface ProductService {
-	Product findProductById(Long product_id);
+	Product selectProductByProductId(Long product_id);
 	List<Product> selectAllProduct();
-	int addProduct(Product product);
+	int insertProduct(Product product);
 	int modifyProduct(Product product);
 }

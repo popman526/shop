@@ -8,7 +8,7 @@ import shop.goodstudy.mall.product.model.Product;
 
 @Mapper
 public interface ProductMapper {
-	Product selectProductByPrdNo(Long prd_no);
+	Product selectProductByProductId(Long product_id);
 	List<Product> selectAllProduct();
-	int addProduct(Product product);
+	int insertProduct(Product product);
 }

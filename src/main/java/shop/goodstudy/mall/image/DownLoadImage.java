@@ -1,4 +1,4 @@
-package shop.goodstudy.mall.product;
+package shop.goodstudy.mall.image;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.view.AbstractView;
 
-public class DownLoad extends AbstractView {
+public class DownLoadImage extends AbstractView {
 
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model,

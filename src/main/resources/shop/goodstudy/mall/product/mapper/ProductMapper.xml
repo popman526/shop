@@ -5,22 +5,15 @@
 
 <mapper namespace="shop.goodstudy.mall.product.mapper.ProductMapper">
 
-    <select id="selectProductByPrdNo" resultType="product">
-        SELECT PRD_NO
-              ,PRD_DIV_CD
-              ,PRD_TYP_CD
-              ,PRD_STAT_CD
-              ,SALE_STRT_DTIME
-              ,SALE_END_DTIME
-              ,PRD_NM
-              ,MIN_QTY
-              ,MAX_QTY
-              ,REG_ID
-              ,REG_DTIME
-              ,MOD_ID
-              ,MOD_DTIME
-          FROM shops.GD_PRD_BASE_INFO
-         WHERE PRD_NO = #{prd_no}
+    <select id="selectProductByProductId" resultType="product">
+        SELECT product_id
+              ,product_name
+              ,product_state
+              ,product_price
+              ,reg_id
+              ,reg_dt
+          FROM shops.product
+         WHERE product_id = #{product_id}
     </select>
 
     <select id="selectAllProduct" resultType="product">
@@ -33,7 +26,7 @@
           FROM shops.product
     </select>
 
-    <insert id="addProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="product_id">
+    <insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="product_id">
       INSERT INTO shops.product (
              product_name
             ,product_state

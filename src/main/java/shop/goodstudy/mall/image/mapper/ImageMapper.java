@@ -9,6 +9,7 @@ import shop.goodstudy.mall.image.model.Image;
 @Mapper
 public interface ImageMapper {
 	int insertImage(Image image);
-	Image mainImageDown(int product_id);
-	List<Image> findAllImageByProduct_Id(long product_id);
+	Image downloadMainImage(int product_id);
+	List<Image> selectAllImageIdByProductId(long product_id);
+	Image downloadContentImage(int image_id);
 }

@@ -27,8 +27,8 @@ public class ProductShowController {
     public ModelAndView productCreateJsp(HttpServletRequest request) {
     	long product_id = Long.parseLong(request.getParameter("product_id"));
 
-        Product product = productService.findProductById(product_id);
-        List<Image> images = imageService.findAllImageByProduct_Id(product_id);
+        Product product = productService.selectProductByProductId(product_id);
+        List<Image> images = imageService.selectAllImageIdByProductId(product_id);
 
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/product/show");
