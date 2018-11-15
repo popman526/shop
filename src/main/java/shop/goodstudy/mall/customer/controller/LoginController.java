@@ -1,4 +1,4 @@
-package shop.goodstudy.mall.controller.customer;
+package shop.goodstudy.mall.customer.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

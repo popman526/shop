@@ -1,4 +1,4 @@
-package shop.goodstudy.mall.product.model;
+package shop.goodstudy.mall.image.model;
 
 import org.apache.ibatis.type.Alias;
 

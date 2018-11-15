@@ -48,29 +48,5 @@
             ,sysdate()
       )
     </insert>
-    
-    <insert id="insertImage" parameterType="Image">
-      INSERT INTO shops.product_image (
-             physical_name
-            ,image_name
-            ,imagefile
-            ,product_id
-      ) VALUES (
-             #{physical_name}
-            ,#{image_name}
-            ,#{imagefile}
-            ,#{product_id}
-      )
-    </insert>
-    
-    <select id="mainImageDown" resultType="Image">
-        SELECT image_id
-              ,physical_name
-              ,image_name
-              ,imagefile
-          FROM shops.product_image
-         WHERE product_id = #{product_id}
-         LIMIT 1
-    </select>
 
 </mapper>

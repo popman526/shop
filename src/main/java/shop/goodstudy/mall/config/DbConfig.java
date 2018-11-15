@@ -1,4 +1,4 @@
-package shop.goodstudy.mall;
+package shop.goodstudy.mall.config;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.annotation.MapperScan;

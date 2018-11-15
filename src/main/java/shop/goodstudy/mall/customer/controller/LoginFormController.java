@@ -1,4 +1,4 @@
-package shop.goodstudy.mall.controller.customer;
+package shop.goodstudy.mall.customer.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

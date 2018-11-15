@@ -1,4 +1,4 @@
-package shop.goodstudy.mall.controller.product;
+package shop.goodstudy.mall.product.controller;
 
 import java.util.Iterator;
 import java.util.List;
@@ -13,7 +13,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import shop.goodstudy.mall.controller.CustomerSessionUtils;
 import shop.goodstudy.mall.customer.model.Customer;
-import shop.goodstudy.mall.product.model.Image;
+import shop.goodstudy.mall.image.model.Image;
+import shop.goodstudy.mall.image.service.ImageService;
 import shop.goodstudy.mall.product.model.Product;
 import shop.goodstudy.mall.product.service.ProductService;
 
@@ -22,6 +23,9 @@ public class ProductCreateController {
 	
 	@Autowired
     private ProductService productService;
+	
+	@Autowired
+	private ImageService imageService;
 
     @PostMapping("/product/create")
     public String productCreateJsp(HttpServletRequest request, MultipartHttpServletRequest mRequest) {
@@ -50,7 +54,7 @@ public class ProductCreateController {
 				image.setImagefile(imagefile);
 				image.setPhysical_name(physical_name);
 				image.setProduct_id(product.getProduct_id());
-				productService.insertImage(image);
+				imageService.insertImage(image);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

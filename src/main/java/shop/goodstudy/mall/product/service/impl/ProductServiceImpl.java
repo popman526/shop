@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.goodstudy.mall.product.mapper.ProductMapper;
-import shop.goodstudy.mall.product.model.Image;
 import shop.goodstudy.mall.product.model.Product;
 import shop.goodstudy.mall.product.service.ProductService;
 
@@ -19,7 +18,7 @@ public class ProductServiceImpl implements ProductService {
 	ProductMapper productMapper;
 
 	@Override
-	public Product findById(Long id) {
+	public Product findProductById(Long product_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -38,16 +37,6 @@ public class ProductServiceImpl implements ProductService {
 	public int modifyProduct(Product product) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	@Override
-	public int insertImage(Image image) {
-		return productMapper.insertImage(image);
-	}
-
-	@Override
-	public Image mainImageDown(int product_id) {
-		return productMapper.mainImageDown(product_id);
 	}
 	
 }
