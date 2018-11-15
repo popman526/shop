@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.goodstudy.mall.product.mapper.ProductMapper;
+<<<<<<< HEAD
 import shop.goodstudy.mall.product.model.Image;
 import shop.goodstudy.mall.product.model.Product;
 import shop.goodstudy.mall.product.service.ProductService;
@@ -50,4 +51,26 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.mainImageDown(product_id);
 	}
 	
+=======
+import shop.goodstudy.mall.product.model.Product;
+
+@Service
+@Transactional
+public class ProductServiceImpl {
+
+	@Autowired
+	ProductMapper productMapper;
+	
+	public Product getProductByPrdNo(Long prd_no) {
+		return productMapper.selectProductByPrdNo(prd_no);
+	}
+	
+	public List<Product> getAllProduct() {
+		return productMapper.selectAllProduct();
+	}
+	
+	public void addProduct(Product product) {
+		productMapper.insertProduct(product);
+	}
+>>>>>>> branch 'dev-bogurs' of https://github.com/popman526/shop.git
 }

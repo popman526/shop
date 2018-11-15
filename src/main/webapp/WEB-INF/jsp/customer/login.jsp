@@ -18,7 +18,11 @@
             <form name="question" method="post" action="/customer/login">
                 <div class="form-group">
                     <label for="customer_id">사용자 아이디</label>
+<<<<<<< HEAD
                     <input class="form-control" id="customer_id" name="customer_id" placeholder="Customer ID">
+=======
+                    <input class="form-control" id="customer_id" name="customer_id" placeholder="User ID">
+>>>>>>> branch 'dev-bogurs' of https://github.com/popman526/shop.git
                 </div>
                 <div class="form-group">
                     <label for="customer_pw">비밀번호</label>

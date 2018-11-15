@@ -24,6 +24,7 @@
     </select>
 
     <select id="selectAllProduct" resultType="product">
+<<<<<<< HEAD
         SELECT product_id
               ,product_name
               ,product_state
@@ -72,5 +73,44 @@
          WHERE product_id = #{product_id}
          LIMIT 1
     </select>
+=======
+        SELECT PRD_NO
+              ,PRD_DIV_CD
+              ,PRD_TYP_CD
+              ,PRD_STAT_CD
+              ,SALE_STRT_DTIME
+              ,SALE_END_DTIME
+              ,PRD_NM
+              ,MIN_QTY
+              ,MAX_QTY
+              ,REG_ID
+              ,REG_DTIME
+              ,MOD_ID
+              ,MOD_DTIME
+          FROM shops.GD_PRD_BASE_INFO
+    </select>
+
+    <insert id="insertProduct">
+      INSERT INTO shops.GD_PRD_BASE_INFO (
+             PRD_DIV_CD
+            ,PRD_TYP_CD
+            ,PRD_STAT_CD
+            ,SALE_STRT_DTIME
+            ,PRD_NM
+            ,MIN_QTY
+            ,MAX_QTY
+            ,REG_DTIME
+      ) VALUES (
+             #{prd_div_cd}
+            ,#{prd_typ_cd}
+            ,#{prd_stat_cd}
+            ,now()
+            ,#{prd_nm}
+            ,#{min_qty}
+            ,#{max_qty}
+            ,now()
+      )
+    </insert>
+>>>>>>> branch 'dev-bogurs' of https://github.com/popman526/shop.git
 
 </mapper>

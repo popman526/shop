@@ -31,6 +31,7 @@ public class Customer {
 
         return this.customer_pw.equals(customer_pw);
     }
+<<<<<<< HEAD
 	
 	public boolean isSameCustomer(Customer customer) {
         return isSameCustomer(customer.getCustomer_id());
@@ -39,5 +40,7 @@ public class Customer {
 	public boolean isSameCustomer(String newCustomerId) {
         return customer_id.equals(newCustomerId);
     }
+=======
+>>>>>>> branch 'dev-bogurs' of https://github.com/popman526/shop.git
     
 }
