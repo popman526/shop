@@ -36,7 +36,6 @@
   <div class="col-md-12">
     <div class="navbar-header">
       <a href="/" style="margin-left:15px;" class="navbar-btn btn btn-default btn-plus dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-home" style="color:#dd1111;"></i> Home <small><i class="glyphicon glyphicon-chevron-down"></i></small></a>
-<<<<<<< HEAD
       <c:if test="${not empty sessionScope.customer}">
       <ul class="nav dropdown-menu">
         <li><a href="/users/profile?customer_id=${sessionScope.customer.customer_id}"><i class="glyphicon glyphicon-user" style="color:#1111dd;"></i> Profile</a></li>
@@ -52,23 +51,6 @@
         <c:when test="${not empty sessionScope.customer}">
         <li><a href="/users/logout" role="button">로그아웃</a></li>
         <li><a href="/users/updateForm?customer_id=${sessionScope.customer.customer_id}" role="button">개인정보수정</a></li>
-=======
-      <c:if test="${not empty sessionScope.user}">
-      <ul class="nav dropdown-menu">
-        <li><a href="/users/profile?customer_id=${sessionScope.user.customer_id}"><i class="glyphicon glyphicon-user" style="color:#1111dd;"></i> Profile</a></li>
-        <li class="nav-divider"></li>
-        <li><a href="#"><i class="glyphicon glyphicon-cog" style="color:#dd1111;"></i> Settings</a></li>
-      </ul>
-      </c:if>
-    </div>
-    <div class="collapse navbar-collapse" id="navbar-collapse2">
-      <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="/">Posts</a></li>
-        <c:choose>
-        <c:when test="${not empty sessionScope.user}">
-        <li><a href="/users/logout" role="button">로그아웃</a></li>
-        <li><a href="/users/updateForm?customer_id=${sessionScope.user.customer_id}" role="button">개인정보수정</a></li>
->>>>>>> branch 'dev-bogurs' of https://github.com/popman526/shop.git
         </c:when>
         <c:otherwise>
         <li><a href="/customer/loginForm" role="button">로그인</a></li>

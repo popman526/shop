@@ -28,11 +28,7 @@ public class LoginController {
 
         if (customer.matchPassword(customer_pw)) {
             HttpSession session = request.getSession();
-<<<<<<< HEAD
             session.setAttribute("customer", customer);
-=======
-            session.setAttribute("user", customer);
->>>>>>> branch 'dev-bogurs' of https://github.com/popman526/shop.git
             return "redirect:/";
         } else {
             throw new IllegalStateException("비밀번호가 틀립니다.");
