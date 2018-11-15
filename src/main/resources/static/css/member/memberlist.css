@@ -1,0 +1,14 @@
+/* @charset "UTF-8"; */
+
+.simple-table {
+	border: 1px solid #000000;
+	border-spacing: 0px;
+	border-collapse: collapse;
+}
+
+.simple-table td {
+	border: 1px solid #000000;
+}
+.simple-table th {
+	border: 1px solid #000000;
+}

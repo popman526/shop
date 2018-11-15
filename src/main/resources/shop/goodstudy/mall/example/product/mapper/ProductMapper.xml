@@ -42,4 +42,9 @@
 			, PRICE = #{price}
 		WHERE ID = #{id}
 	</update>
+	
+	<delete id="deleteProduct" parameterType="product" >
+		DELETE PRODUCT 
+		WHERE ID = #{id}
+	</delete>
 </mapper>

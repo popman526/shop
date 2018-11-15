@@ -16,7 +16,7 @@ import shop.goodstudy.mall.example.product.model.Product;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-@Transactional
+//@Transactional
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @Slf4j
 public class ProductServiceTest {
@@ -57,6 +57,15 @@ public class ProductServiceTest {
 		
 		log.info("a : {}", a);
 		log.info("b : {}", b);
+		log.info("product : {}", products);
+	}
+	
+	@Test
+	public void test05_deleteProduct() {
+		int a = service.deleteProduct(new Product(1L, "노트북", "02", 1_200_000L));
+		
+		List<Product> products = service.findAllProduct();
+		log.info("a : {}", a);
 		log.info("product : {}", products);
 	}
 	
