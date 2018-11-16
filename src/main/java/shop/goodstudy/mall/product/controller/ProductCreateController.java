@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import shop.goodstudy.mall.controller.CustomerSessionUtils;
 import shop.goodstudy.mall.customer.model.Customer;
 import shop.goodstudy.mall.image.model.Image;
 import shop.goodstudy.mall.image.service.ImageService;
 import shop.goodstudy.mall.product.model.Product;
 import shop.goodstudy.mall.product.service.ProductService;
+import shop.goodstudy.mall.util.CustomerSessionUtils;
 
 @Controller
 public class ProductCreateController {

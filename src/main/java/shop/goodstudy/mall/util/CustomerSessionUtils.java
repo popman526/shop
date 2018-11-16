@@ -1,4 +1,4 @@
-package shop.goodstudy.mall.controller;
+package shop.goodstudy.mall.util;
 
 import javax.servlet.http.HttpSession;
 
