@@ -1,6 +1,5 @@
 package shop.goodstudy.mall.example.member.service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.junit.FixMethodOrder;
@@ -13,7 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import lombok.extern.slf4j.Slf4j;
 import shop.goodstudy.mall.example.member.model.Member;
-import shop.goodstudy.mall.example.member.model.MemberRole;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
