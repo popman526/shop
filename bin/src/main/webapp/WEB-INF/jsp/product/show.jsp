@@ -10,8 +10,6 @@
 <body>
 <%@ include file="/WEB-INF/jsp/include/navigation.jspf" %>
 
-<input type="hidden" id="customerId" name="customerId" value="${customer.customer_id}">
-
 <div class="container" id="main">
 	<div class="col-md-12 col-sm-12 col-lg-10 col-lg-offset-1">
 		<div class="panel panel-default">
@@ -50,32 +48,6 @@
 								<a class="link-modify-article" href="/">목록</a>
 							</li>
 						</ul>
-					</div>
-					<div>
-						<form name="buyForm" method="post">
-							<input type="hidden" id="product_id" name="product_id" value="${product.product_id}">
-		            		<input type="hidden" id="product_name" name="product_name" value="${product.product_name}">
-		            		<input type="hidden" id="temp_product_price" value="${product.product_price}">
-							<button id="basket-button" class="btn btn-success clearfix pull-right" onclick="basket();">장바구니</button>
-							<button id="buyProduct-button" class="btn btn-success clearfix pull-right" onclick="buyProduct();">상품구입</button>
-							<div class="article-author-name pull-right">|</div>
-							<input type="text" value="${product.product_price }" class="article-author-name pull-right" id="product_price" name="product_price" readonly="readonly">
-							<div class="article-author-name pull-right">가격</div>
-							<div class="article-author-name pull-right">|</div>
-							<select name="buyCount" id="buyCount" class="pull-right" onchange="changeBuyCountSelect();">
-								<option value="1" selected="selected">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-							</select>
-							<div class="article-author-name pull-right">수량</div>
-						</form>
 					</div>
 				</article>
 			</div>
