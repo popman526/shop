@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shop.goodstudy.mall.product.mapper.ProductMapper">
+
+    <select id="selectProductByProductId" resultType="product">
+        SELECT product_id
+              ,product_name
+              ,product_state
+              ,product_price
+              ,reg_id
+              ,reg_dt
+          FROM shops.product
+         WHERE product_id = #{product_id}
+    </select>
+
+    <select id="selectAllProduct" resultType="product">
+        SELECT product_id
+              ,product_name
+              ,product_state
+              ,product_price
+              ,reg_id
+              ,reg_dt
+          FROM shops.product
+    </select>
+
+    <insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="product_id">
+      INSERT INTO shops.product (
+             product_name
+            ,product_state
+            ,product_price
+            ,reg_id
+            ,reg_dt
+      ) VALUES (
+             #{product_name}
+            ,#{product_state}
+            ,#{product_price}
+            ,#{reg_id}
+            ,sysdate()
+      )
+    </insert>
+
+</mapper>
