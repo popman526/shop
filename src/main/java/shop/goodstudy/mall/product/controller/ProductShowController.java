@@ -24,7 +24,7 @@ public class ProductShowController {
 	private ImageService imageService;
 
     @GetMapping("/product/show")
-    public ModelAndView productCreateJsp(HttpServletRequest request) {
+    public ModelAndView productShowJsp(HttpServletRequest request) {
     	long product_id = Long.parseLong(request.getParameter("product_id"));
 
         Product product = productService.selectProductByProductId(product_id);
