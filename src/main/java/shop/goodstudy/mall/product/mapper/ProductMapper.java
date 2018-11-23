@@ -11,4 +11,5 @@ public interface ProductMapper {
 	Product selectProductByProductId(Long product_id);
 	List<Product> selectAllProduct();
 	int insertProduct(Product product);
+	int deleteProductByProductId(Long product_id);
 }

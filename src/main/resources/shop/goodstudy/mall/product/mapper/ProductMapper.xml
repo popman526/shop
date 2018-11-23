@@ -42,5 +42,10 @@
             ,sysdate()
       )
     </insert>
+    
+    <delete id="deleteProductByProductId">
+      DELETE FROM shops.product
+      WHERE product_id = #{product_id}
+    </delete>
 
 </mapper>

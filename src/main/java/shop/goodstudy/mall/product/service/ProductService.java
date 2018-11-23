@@ -9,4 +9,5 @@ public interface ProductService {
 	List<Product> selectAllProduct();
 	int insertProduct(Product product);
 	int modifyProduct(Product product);
+	int deleteProductByProductId(Long product_id);
 }
