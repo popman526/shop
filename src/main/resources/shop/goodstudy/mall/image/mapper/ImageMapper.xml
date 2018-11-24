@@ -6,7 +6,7 @@
 <mapper namespace="shop.goodstudy.mall.image.mapper.ImageMapper">
 
     <insert id="insertImage" parameterType="Image">
-      INSERT INTO shops.product_image (
+      INSERT INTO product_image (
              physical_name
             ,image_name
             ,imagefile
@@ -21,20 +21,20 @@
     
     <select id="downloadMainImage" resultType="Image">
         SELECT imagefile
-          FROM shops.product_image
+          FROM product_image
          WHERE product_id = #{product_id}
          LIMIT 1
     </select>
     
     <select id="selectAllImageIdByProductId" resultType="Image">
         SELECT image_id
-          FROM shops.product_image
+          FROM product_image
          WHERE product_id = #{product_id}
     </select>
     
     <select id="downloadContentImage" resultType="Image">
         SELECT imagefile
-          FROM shops.product_image
+          FROM product_image
          WHERE image_id = #{image_id}
     </select>
 
