@@ -9,4 +9,5 @@ public interface ImageService {
 	Image downloadMainImage(int product_id);
 	List<Image> selectAllImageIdByProductId(long product_id);
 	Image downloadContentImage(int image_id);
+	int deleteAllImageByProductId(long product_id);
 }

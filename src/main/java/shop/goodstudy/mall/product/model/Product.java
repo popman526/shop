@@ -10,7 +10,7 @@ import lombok.Data;
 @Alias("product")
 public class Product {
 
-	private int product_id;
+	private long product_id;
 	private String product_name;
 	private Long product_state;
 	private Long product_price;
@@ -29,6 +29,15 @@ public class Product {
 		this.product_state = product_state;
 		this.product_price = product_price;
 		this.reg_id = reg_id;
+	}
+	
+	public Product(long product_id, String product_name, Long product_state, Long product_price, String mod_id) {
+		super();
+		this.product_id = product_id;
+		this.product_name = product_name;
+		this.product_state = product_state;
+		this.product_price = product_price;
+		this.mod_id = mod_id;
 	}
 
 }

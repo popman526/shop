@@ -36,5 +36,10 @@ public class ImageServiceImpl implements ImageService {
 	public Image downloadContentImage(int image_id) {
 		return imageMapper.downloadContentImage(image_id);
 	}
+
+	@Override
+	public int deleteAllImageByProductId(long product_id) {
+		return imageMapper.deleteAllImageByProductId(product_id);
+	}
 	
 }

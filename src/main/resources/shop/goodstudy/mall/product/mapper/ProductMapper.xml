@@ -47,5 +47,16 @@
       DELETE FROM product
       WHERE product_id = #{product_id}
     </delete>
+    
+    <update id="updateProductByProduct">
+      UPDATE product
+      SET
+         product_name = #{product_name}
+        ,product_state = #{product_state}
+        ,product_price = #{product_price}
+        ,mod_id = #{mod_id}
+        ,mod_dt = sysdate()
+      WHERE product_id = #{product_id}
+    </update>
 
 </mapper>

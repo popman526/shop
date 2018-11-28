@@ -21,7 +21,7 @@
 							<strong class="subject">
 								<a href="/product/show?product_id=${each.product_id}">${each.product_name}</a>
 							</strong>
-							<div class="main_img" title="메인이미지">
+							<div class="main_img" title="${each.product_name}">
 								<a style="cursor: pointer;" class="btn-example" href="/product/show?product_id=${each.product_id}">
                                 <img src="/product/downloadMainImage?product_id=${each.product_id}" id="main_img"></a>
 							</div>

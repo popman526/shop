@@ -23,19 +23,33 @@
         SELECT imagefile
           FROM product_image
          WHERE product_id = #{product_id}
+         ORDER BY image_id
          LIMIT 1
     </select>
     
     <select id="selectAllImageIdByProductId" resultType="Image">
         SELECT image_id
+              ,image_name
           FROM product_image
          WHERE product_id = #{product_id}
+         ORDER BY image_id
     </select>
     
     <select id="downloadContentImage" resultType="Image">
         SELECT imagefile
           FROM product_image
          WHERE image_id = #{image_id}
+         ORDER BY image_id
     </select>
+    
+    <delete id="deleteAllImageByProductId">
+        DELETE FROM product_image
+        WHERE product_id = #{product_id}
+    </delete>
+    
+    <delete id="deleteLegacyImagesByProductId">
+        DELETE FROM product_image
+        WHERE product_id = #{product_id}
+    </delete>
 
 </mapper>

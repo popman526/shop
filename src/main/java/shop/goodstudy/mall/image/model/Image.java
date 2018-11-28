@@ -7,9 +7,9 @@ import lombok.Data;
 @Data
 @Alias("image")
 public class Image {
-	private int image_id;
+	private long image_id;
 	private String physical_name;
 	private String image_name;
 	private byte[] imagefile;
-	private int product_id;
+	private long product_id;
 }

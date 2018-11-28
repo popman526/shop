@@ -33,14 +33,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public int modifyProduct(Product product) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteProductByProductId(Long product_id) {
+		return productMapper.deleteProductByProductId(product_id);
 	}
 
 	@Override
-	public int deleteProductByProductId(Long product_id) {
-		return productMapper.deleteProductByProductId(product_id);
+	public int updateProductByProduct(Product product) {
+		return productMapper.updateProductByProduct(product);
 	}
 	
 }

@@ -8,6 +8,6 @@ public interface ProductService {
 	Product selectProductByProductId(Long product_id);
 	List<Product> selectAllProduct();
 	int insertProduct(Product product);
-	int modifyProduct(Product product);
 	int deleteProductByProductId(Long product_id);
+	int updateProductByProduct(Product product);
 }

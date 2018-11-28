@@ -1,5 +1,6 @@
 package shop.goodstudy.mall.product.controller;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class ProductCreateController {
 	private ImageService imageService;
 
     @PostMapping("/product/create")
-    public String productCreateJsp(HttpServletRequest request, MultipartHttpServletRequest mRequest) {
+    public String productCreateJsp(HttpServletRequest request, MultipartHttpServletRequest mRequest) throws IOException {
     	if (!CustomerSessionUtils.isLogined(request.getSession())) {
             return "redirect:/customer/loginForm";
         }
@@ -46,18 +47,14 @@ public class ProductCreateController {
 			String image_name = mFile.getOriginalFilename();
 			String physical_name = image_name + "_" + System.currentTimeMillis();
 			byte[] imagefile = null;
-			try {
-				imagefile = new byte[(int) mFile.getSize()];
-				imagefile = mFile.getBytes();
-				Image image = new Image();
-				image.setImage_name(image_name);
-				image.setImagefile(imagefile);
-				image.setPhysical_name(physical_name);
-				image.setProduct_id(product.getProduct_id());
-				imageService.insertImage(image);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			Image image = new Image();
+			imagefile = new byte[(int) mFile.getSize()];
+			imagefile = mFile.getBytes();
+			image.setImage_name(image_name);
+			image.setImagefile(imagefile);
+			image.setPhysical_name(physical_name);
+			image.setProduct_id(product.getProduct_id());
+			imageService.insertImage(image);
 		}
         
         return "redirect:/";
