@@ -98,4 +98,5 @@ table#product-info-write-table {
 
 	<%@ include file="/WEB-INF/jsp/include/footer.jspf"%>
 </body>
+<script src="/js/product/writeForm.js"></script>
 </html>
