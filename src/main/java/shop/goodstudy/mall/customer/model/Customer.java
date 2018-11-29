@@ -3,10 +3,13 @@ package shop.goodstudy.mall.customer.model;
 import org.apache.ibatis.type.Alias;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
 @Alias("customer")
 public class Customer {
+	private int customer_code;
 	private String customer_id;
     private String customer_pw;
     private String customer_name;
@@ -16,8 +19,9 @@ public class Customer {
     	
     }
     
-    public Customer(String customer_id, String customer_pw, String customer_name, String customer_email) {
+    public Customer(int customer_code, String customer_id, String customer_pw, String customer_name, String customer_email) {
     	super();
+    	this.customer_code = customer_code;
     	this.customer_id = customer_id;
     	this.customer_pw = customer_pw;
     	this.customer_name = customer_name;

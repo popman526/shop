@@ -46,6 +46,7 @@
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse2">
       <ul class="nav navbar-nav navbar-right">
+      	<li><a href="/orderList">내 주문현황</a></li>
         <li class="active"><a href="/">Posts</a></li>
         <c:choose>
         <c:when test="${not empty sessionScope.customer}">

@@ -10,7 +10,7 @@
               ,customer_pw
               ,customer_name
               ,customer_email
-          FROM shops.customers
+          FROM mall.customers
          WHERE customer_id = #{customer_id}
     </select>
 

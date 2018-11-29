@@ -12,7 +12,7 @@
               ,product_price
               ,reg_id
               ,reg_dt
-          FROM shops.product
+          FROM mall.product
          WHERE product_id = #{product_id}
     </select>
 
@@ -23,12 +23,12 @@
               ,product_price
               ,reg_id
               ,reg_dt
-          FROM shops.product
+          FROM mall.product
           ORDER BY product_id desc
     </select>
 
     <insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="product_id">
-      INSERT INTO shops.product (
+      INSERT INTO mall.product (
              product_name
             ,product_state
             ,product_price
@@ -44,7 +44,7 @@
     </insert>
     
     <delete id="deleteProductByProductId">
-      DELETE FROM shops.product
+      DELETE FROM mall.product
       WHERE product_id = #{product_id}
     </delete>
 
