@@ -6,16 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- <link rel="stylesheet" type="text/css" href="css/member/memberlist.css"> -->
-<!-- <script type="text/javascript" src="webjars/jquery/3.3.1-1/jquery.min.js"></script> -->
 </head>
 <body>
-	<a href="home">홈</a>
+<%@include file="/WEB-INF/jsp/example/inc/header.jsp" %>
 	<h1>로그인</h1>
 	<c:if test="${param.error ne null}">
 		<div>Invalid id and password.</div>
 	</c:if>
-	<form action="login" method="post">
+	<form action="/performlogin" method="post">
 		ID : <input type="text" name="memberId"><br> 
 		PW : <input	type="password" name="password"><br>
 		<input type="submit" value="로그인">

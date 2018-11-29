@@ -10,8 +10,9 @@
 <script type="text/javascript" src="js/member/memberlist.js"></script>
 </head>
 <body>
-	<a href="home">home</a>
-	<a href="hello">hello</a>
+<%@include file="/WEB-INF/jsp/example/inc/header.jsp" %>
+	<a href="/home">home</a>
+	<a href="/hello">hello</a>
 	<h1>회원 목록</h1>
 	<table class="simple-table">
 		<thead>
@@ -19,7 +20,7 @@
 				<th>ID</th>
 				<th>Member ID</th>
 				<th>Name</th>
-				<th>Member Type</th>
+				<th>Role</th>
 			</tr>
 		</thead>
 		<tbody id="members">

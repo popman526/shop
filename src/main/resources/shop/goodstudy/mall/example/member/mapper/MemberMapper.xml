@@ -9,6 +9,7 @@
 			, MEMBER_ID
 			, PASSWORD
 			, NAME
+			, ROLE
 		FROM MEMBER
 	</select>
 
@@ -18,6 +19,7 @@
 			, MEMBER_ID
 			, PASSWORD
 			, NAME
+			, ROLE
 		FROM MEMBER
 		WHERE ID = #{id}
 	</select>
@@ -28,6 +30,7 @@
 			, MEMBER_ID
 			, PASSWORD
 			, NAME
+			, ROLE
 		FROM MEMBER
 		WHERE MEMBER_ID = #{memberId}
 	</select>
@@ -37,10 +40,12 @@
 			MEMBER_ID
 			, PASSWORD
 			, NAME
+			, ROLE
 		) VALUES (
 			#{memberId}
 			, #{password}
 			, #{name}
+			, #{role}
 		)
 	</insert>
 	
@@ -50,6 +55,7 @@
 			MEMBER_ID = #{memberId}
 			, PASSWORD = #{password}
 			, NAME = #{name}
+			, ROLE = #{role}
 		WHERE ID = #{id}
 	</update>
 	

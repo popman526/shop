@@ -21,4 +21,8 @@ public class Member {
 	private String name;
 	@NonNull
 	private String password;
+	
+	// TODO 추후 다중 role 등록으로 수정
+	@NonNull
+	private String role;
 }

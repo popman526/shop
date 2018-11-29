@@ -7,12 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@include file="/WEB-INF/jsp/example/inc/header.jsp" %>
 	<h1>Hello World</h1>
 	<h2>This is JSP</h2>
-	<a href="memberslist">회원 리스트</a>
-	<form action="/logout" method="post">
-		<input type="submit" value="Log Out" />
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	</form>
+	<sec:authorize access="hasRole('ADMIN')">
+		<a href="memberslist">회원 리스트</a>
+	</sec:authorize>
 </body>
 </html>

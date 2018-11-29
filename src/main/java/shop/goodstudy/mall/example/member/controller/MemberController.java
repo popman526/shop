@@ -24,14 +24,17 @@ public class MemberController {
 		return "example/member/joinform";
 	}
 	
-	@GetMapping("/login")
+	@GetMapping("/loginform")
 	public String loginform() {
 		return "example/member/loginform";
 	}
 	
 	@PostMapping("/member/join")
 	public String join(Member member) {
+		member.setRole("ROLE_CUSTOMER");
 		memberService.add(member);
-		return "redirect:/memberslist";
+		return "redirect:/home";
 	}
+	
+	
 }

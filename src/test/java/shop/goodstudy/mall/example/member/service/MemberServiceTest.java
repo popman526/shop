@@ -39,8 +39,8 @@ public class MemberServiceTest {
 
 	@Test
 	public void test03_addmember() {
-		int a = service.add(new Member("admin", "관리자", "admin"));
-		int b = service.add(new Member("member1", "회원1", "member"));
+		int a = service.add(new Member("admin1", "관리자1", "admin", "ADMIN"));
+		int b = service.add(new Member("member1", "회원1", "member", "CUSTOMER"));
 		List<Member> members = service.findAll();
 		
 		log.info("a : {}", a);
@@ -50,8 +50,8 @@ public class MemberServiceTest {
 	
 	@Test
 	public void test04_modifymember() {
-		int a = service.modify(new Member(2L, "admin", "관리자", "admin"));
-		int b = service.modify(new Member(3L, "member01", "회원01", "member"));
+		int a = service.modify(new Member(3L, "admin", "관리자", "admin", "ADMIN"));
+		int b = service.modify(new Member(4L, "member01", "회원01", "member", "CUSTOMER"));
 		List<Member> members = service.findAll();
 		
 		log.info("a : {}", a);
@@ -61,7 +61,7 @@ public class MemberServiceTest {
 	
 	@Test
 	public void test05_deletemember() {
-		int a = service.delete(new Member(3L, "member01", "회원1", "member"));
+		int a = service.delete(new Member(4L, "member01", "회원1", "member", "CUSTOMER"));
 		
 		List<Member> members = service.findAll();
 		log.info("a : {}", a);
