@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="shop.goodstudy.mall.order.mapper.OrderMapper">
+
+	<insert id="insertOrder"
+		parameterType="order">
+		insert into mall.orders ( customer_code, order_date, order_total_price, order_state )
+		values ( #{customer_code}, now(), #{order_total_price}, 1 )
+		<selectKey resultType="int" keyProperty="order_id" order="AFTER">
+        	SELECT LAST_INSERT_ID()
+    	</selectKey> 
+	</insert>
+
+	<insert id="insertOrderDetail"
+		parameterType="order_detail">
+		insert into mall.order_detail ( order_id, product_id, product_price, order_quantity, product_name )
+		values ( #{order_id}, #{product_id}, #{product_price}, #{order_quantity} , #{product_name})
+	</insert>
+
+	<select id="selectOrder"
+		resultType="order">
+		select  b.product_id,
+				b.product_name,
+				a.order_id,
+				a.customer_code,
+				a.order_date,
+				a.order_total_price,
+				a.order_state,
+				b.order_quantity
+		from mall.orders a, mall.order_detail b
+		where a.order_id = b.order_id
+		order by order_id desc
+	</select>
+
+	<delete id="deleteOrder" parameterType="int">
+		delete from mall.orders where order_id = #{order_id}
+	</delete>
+	
+	<delete id="deleteOrderDetail" parameterType="int">
+		delete from mall.order_detail where order_id = #{order_id}
+	</delete>
+	
+
+</mapper>
