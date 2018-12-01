@@ -1,0 +1,11 @@
+ img.main_img {
+	width: 100px; 
+	display: inline;
+ }
+ .title_center { margin:auto; text-align:center; }
+ img.cart {
+	width: 120px; 
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+ }
