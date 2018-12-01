@@ -4,23 +4,11 @@
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<link rel="stylesheet" type="text/css" href="/css/order_style.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--  link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"-->
 <head>
 	<%@ include file="/WEB-INF/jsp/include/header.jspf" %>
-<style type="text/css">
- img.main_img {
-	width: 100px; 
-	display: inline;
- }
- .title_center { margin:auto; text-align:center; }
- img.cart {
-	width: 120px; 
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
- }
-</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/jsp/include/navigation.jspf" %>

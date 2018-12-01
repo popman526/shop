@@ -5,3 +5,4 @@
 <script src="/js/scripts.js"></script>
 <script src="/js/product/writeForm.js"></script>
 <script src="/js/product/show.js"></script>
+<script src="/js/order/order.js"></script>

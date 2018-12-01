@@ -4,22 +4,16 @@
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<link rel="stylesheet" type="text/css" href="/css/order_style.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--  link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"-->
 <head>
 	<%@ include file="/WEB-INF/jsp/include/header.jspf" %>
-<style type="text/css">
-img.main_img {
-	width: 100px; 
-	display: inline;
-}
-</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/jsp/include/navigation.jspf" %>
 
 <form id="orderListForm" name="orderListForm" method="post">
-
 <div class="container" id="main">
    <div class="col-md-12 col-sm-12 col-lg-10 col-lg-offset-1">
       <div class="panel panel-default content-main">
@@ -75,12 +69,6 @@ img.main_img {
 </div>    
 </form>
 <script>
-function fn_delete(order_id){
-    var form = document.getElementById("orderListForm");
-    // alert( order_id);
-    form.action = "/deleteOrder.do/" + order_id ;
-    form.submit();
-}
 </script>
 <%@ include file="/WEB-INF/jsp/include/footer.jspf"%>
 </body>

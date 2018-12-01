@@ -27,18 +27,9 @@ public class OrderListController {
 	private OrderMapper orderMapper;
 	@Autowired
 	private OrderService OrderServiceImpl;
-/*	@RequestMapping("/product")
-	public ModelAndView product() throws Exception {
-		
-		List<ProductVO> productList = productMapper.selectProduct();
-		ModelAndView returnPage = new ModelAndView("order/order");
-		returnPage.addObject("productList",productList);
-		return returnPage;
-	}*/
 	
 	@PostMapping("/order/product")
 	public ModelAndView insertOrder(  
-//			@RequestParam(value="product_price") String price 
 			HttpServletRequest request,
 			@RequestParam(value="order_quantity", required=true) List<Integer> order_quantities,
 			@RequestParam(value="product_price", required=true) List<Integer> prices,
@@ -56,16 +47,15 @@ public class OrderListController {
 		
 		for( int price : prices ) {
 			orderVO.setOrder_total_price(price);
-			OrderServiceImpl.insertOrder(orderVO);
+			// OrderServiceImpl.insertOrder(orderVO);
 			
 			int idx = prices.indexOf(price);
 			orderDetailVO.setProduct_price(price );
 			orderDetailVO.setProduct_id(product_ids.get(idx));
-			orderDetailVO.setOrder_id(orderVO.getOrder_id());
 			orderDetailVO.setOrder_quantity(order_quantities.get(idx));
 			orderDetailVO.setProduct_name(product_names.get(idx));
 			
-			OrderServiceImpl.insertOrderDetail(orderDetailVO);
+			OrderServiceImpl.insertOrderAndDetail(orderVO, orderDetailVO);
 			
 			// page 보여줄 값 setting
 			oDetail.add(orderDetailVO);
@@ -86,11 +76,10 @@ public class OrderListController {
 		return returnPage;
 	}
 	
-	@RequestMapping("/deleteOrder.do/{order_id}")
+	@RequestMapping("/deleteOrder/{order_id}")
     private String deleteOrder(@PathVariable(value="order_id") int order_id) throws Exception{
-		OrderServiceImpl.deleteOrder(order_id);
-		OrderServiceImpl.deleteOrderDetail(order_id);
-        
+		OrderServiceImpl.deleteOrderAndDetail(order_id);
         return "redirect:/orderList";
+        
     }
 }

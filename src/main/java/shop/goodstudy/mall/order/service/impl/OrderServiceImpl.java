@@ -23,6 +23,14 @@ public class OrderServiceImpl implements OrderService {
 	public int insertOrderDetail(OrderDetailVO order) throws Exception {
 		return orderMapper.insertOrderDetail(order);
 	}
+	
+	public int insertOrderAndDetail(OrderVO order, OrderDetailVO orderDetail) throws Exception {
+		
+		int rv = orderMapper.insertOrder(order);
+		orderDetail.setOrder_id(order.getOrder_id());
+		rv = orderMapper.insertOrderDetail(orderDetail);
+		return rv;
+	}
 
 	public int deleteOrder(int order_id) throws Exception {
 		return orderMapper.deleteOrder(order_id);
@@ -30,5 +38,12 @@ public class OrderServiceImpl implements OrderService {
 	
 	public int deleteOrderDetail(int order_id) throws Exception {
 		return orderMapper.deleteOrderDetail(order_id);
+	}
+	
+	public int deleteOrderAndDetail(int order_id) throws Exception {
+		int rv = 0;
+		rv = orderMapper.deleteOrder(order_id);
+		rv = orderMapper.deleteOrderDetail(order_id);
+		return rv;
 	}
 }
