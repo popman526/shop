@@ -37,5 +37,28 @@
           FROM mall.product_image
          WHERE image_id = #{image_id}
     </select>
+    
+      <insert id="insertThumbnail" parameterType="Thumbnail">
+      INSERT INTO mall.thumbnail (
+             thumbfile
+            ,product_id
+      ) VALUES (
+             #{thumbfile}
+            ,#{product_id}
+      )
+    </insert>
+    
+    <select id="downloadThumbnail" resultType="Thumbnail">
+        SELECT thumbfile
+          FROM mall.thumbnail
+         WHERE product_id = #{product_id}
+         LIMIT 1
+    </select>
+    
+    <select id="countThumbnail" resultType="int">
+        SELECT count(1) cnt
+          FROM mall.thumbnail
+         WHERE product_id = #{product_id}
+    </select>
 
 </mapper>

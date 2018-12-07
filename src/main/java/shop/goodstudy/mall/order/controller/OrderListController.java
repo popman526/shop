@@ -1,8 +1,14 @@
 package shop.goodstudy.mall.order.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.coobird.thumbnailator.Thumbnails;
 import shop.goodstudy.mall.customer.model.Customer;
+import shop.goodstudy.mall.image.mapper.ImageMapper;
+import shop.goodstudy.mall.image.model.Thumbnail;
+import shop.goodstudy.mall.image.service.ImageService;
 import shop.goodstudy.mall.order.mapper.OrderMapper;
 import shop.goodstudy.mall.order.model.OrderDetailVO;
 import shop.goodstudy.mall.order.model.OrderVO;
@@ -27,6 +37,8 @@ public class OrderListController {
 	private OrderMapper orderMapper;
 	@Autowired
 	private OrderService OrderServiceImpl;
+	@Autowired
+	private ImageService imageService;
 	
 	@PostMapping("/order/product")
 	public ModelAndView insertOrder(  
@@ -37,31 +49,56 @@ public class OrderListController {
 			@RequestParam(value="product_name", required=true) List<String> product_names
 			) throws Exception {
 		
+		int idx = 0;
 		OrderVO orderVO= new OrderVO();
 		OrderDetailVO orderDetailVO= new OrderDetailVO();
+		List<OrderDetailVO> oDetail = new ArrayList<OrderDetailVO>();
 		
 		Customer customer = CustomerSessionUtils.getCustomerFromSession(request.getSession());
 		orderVO.setCustomer_code(customer.getCustomer_code());
 		
-		List<OrderDetailVO> oDetail = new ArrayList<OrderDetailVO>();
-		
 		for( int price : prices ) {
 			orderVO.setOrder_total_price(price);
-			// OrderServiceImpl.insertOrder(orderVO);
 			
-			int idx = prices.indexOf(price);
+			idx = prices.indexOf(price);
 			orderDetailVO.setProduct_price(price );
-			orderDetailVO.setProduct_id(product_ids.get(idx));
+			int product_id = product_ids.get(idx);
+			orderDetailVO.setProduct_id(product_id);
 			orderDetailVO.setOrder_quantity(order_quantities.get(idx));
 			orderDetailVO.setProduct_name(product_names.get(idx));
 			
 			OrderServiceImpl.insertOrderAndDetail(orderVO, orderDetailVO);
-			
 			// page 보여줄 값 setting
 			oDetail.add(orderDetailVO);
+			
+			// Thumbnail 저장 S
+			//File image = new File("C://Users/lacid00/Desktop/cart.png"); 
+			//File thumbnail = new File("C:/Users/lacid00/Desktop/thumbnail.png");
+//			byte[] imageInByte = imageMapper.downloadMainImage(product_id).getImagefile();
+//			InputStream in = new ByteArrayInputStream(imageInByte);
+//			BufferedImage bufferedImage = ImageIO.read(in);
+//			try{
+//				BufferedImage thumbnail = Thumbnails.of(bufferedImage)
+//													.size(150, 150)
+//	//												.toFile("C:/Users/lacid00/Desktop/thumbnail.png");
+//													.asBufferedImage();
+//				
+//				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//				ImageIO.write( thumbnail, "jpg", baos );
+//				baos.flush();
+//				byte[] imageForSave = baos.toByteArray();
+//				baos.close();
+//				
+//				Thumbnail thumb = new Thumbnail();
+//				thumb.setThumbfile(imageForSave);
+//				thumb.setProduct_id(product_id);
+//				imageService.insertThumbnail(thumb);
+//			} catch (IOException e) {	
+//				System.out.println(e.getMessage());
+//			}
+			// Thumbnail 저장 E
 		}
 		
-		//return "redirect:/orderList";
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/order/orderResult");
         mav.addObject("orderList",oDetail);
@@ -82,4 +119,5 @@ public class OrderListController {
         return "redirect:/orderList";
         
     }
+	
 }

@@ -37,7 +37,7 @@
 									<div class="main_img" title="메인이미지">
 										<a style="cursor: pointer;" class="btn-example"
 											href="/product/show?product_id=${order.product_id}"> 
-											<img src="/product/downloadMainImage?product_id=${order.product_id}" class="main_img"></a>
+											<img src="/product/downloadThumbnail?product_id=${order.product_id}" class="main_img1"></a>
 									</div>
 								</div>
 								<span></span>
@@ -52,7 +52,7 @@
 								${order.order_quantity}
 							</td>
 							<td>
-								${order.order_total_price}
+								<fmt:formatNumber value="${order.order_total_price}" pattern="#,###" />원
 							</td>
 							<td>
 								<button name="delete" class="btn btn-warning" onClick='fn_delete(${order.order_id})' >상품취소</button>

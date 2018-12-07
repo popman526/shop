@@ -1,13 +1,26 @@
 package shop.goodstudy.mall.order.service.impl;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.imageio.ImageIO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import net.coobird.thumbnailator.Thumbnails;
+import shop.goodstudy.mall.image.mapper.ImageMapper;
+import shop.goodstudy.mall.image.model.Thumbnail;
 import shop.goodstudy.mall.order.mapper.OrderMapper;
 import shop.goodstudy.mall.order.model.OrderDetailVO;
 import shop.goodstudy.mall.order.model.OrderVO;
 import shop.goodstudy.mall.order.service.OrderService;
+
+import shop.goodstudy.mall.image.service.ImageService;
 
 @Service
 @Transactional
@@ -15,6 +28,10 @@ public class OrderServiceImpl implements OrderService {
 
 	@Autowired
 	OrderMapper orderMapper;
+	@Autowired
+	private ImageMapper imageMapper;
+	@Autowired
+	private ImageService imageService;
 	
 	public int insertOrder(OrderVO order) throws Exception {
 		return orderMapper.insertOrder(order);
@@ -25,6 +42,38 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	public int insertOrderAndDetail(OrderVO order, OrderDetailVO orderDetail) throws Exception {
+		
+		// 썸네일 저장 S
+		int product_id = orderDetail.getProduct_id();
+		
+		// 해당 썸네일 존재유무 확인 ( T: pass, F: 썸네일 신규저장 )
+		int countThumb = imageMapper.countThumbnail(product_id);
+		
+		if( countThumb == 0 ) {
+			byte[] imageInByte = imageMapper.downloadMainImage(product_id).getImagefile();
+			InputStream in = new ByteArrayInputStream(imageInByte);
+			BufferedImage bufferedImage = ImageIO.read(in);
+			
+			try{
+				BufferedImage thumbnail = Thumbnails.of(bufferedImage)
+													.size(150, 150)
+													.asBufferedImage();
+				
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				ImageIO.write( thumbnail, "jpg", baos );
+				baos.flush();
+				byte[] imageForSave = baos.toByteArray();
+				baos.close();
+				
+				Thumbnail thumb = new Thumbnail();
+				thumb.setThumbfile(imageForSave);
+				thumb.setProduct_id(product_id);
+				imageService.insertThumbnail(thumb);
+			} catch (IOException e) {	
+				System.out.println(e.getMessage());
+			}
+		}
+		// 썸네일 저장 E
 		
 		int rv = orderMapper.insertOrder(order);
 		orderDetail.setOrder_id(order.getOrder_id());

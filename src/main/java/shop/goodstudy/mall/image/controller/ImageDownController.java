@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import shop.goodstudy.mall.image.mapper.ImageMapper;
 import shop.goodstudy.mall.image.model.Image;
+import shop.goodstudy.mall.image.model.Thumbnail;
 
 @Controller
 public class ImageDownController {
@@ -30,6 +31,15 @@ public class ImageDownController {
 		int image_id=Integer.parseInt((request.getParameter("image_id")));
 		Image image= imageMapper.downloadContentImage(image_id);
 		mav.addObject("imagefile", image.getImagefile());
+		mav.setViewName("downloadview");
+		return mav;
+	}
+	
+	@GetMapping("/product/downloadThumbnail")
+	public ModelAndView downloadThumbnail(HttpServletRequest request, ModelAndView mav) {
+		int product_id=Integer.parseInt((request.getParameter("product_id")));
+		Thumbnail thumb= imageMapper.downloadThumbnail(product_id);
+		mav.addObject("imagefile", thumb.getThumbfile());
 		mav.setViewName("downloadview");
 		return mav;
 	}
