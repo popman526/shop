@@ -1,5 +1,7 @@
 package shop.goodstudy.mall.example.member.model;
 
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
 
 import lombok.AllArgsConstructor;
@@ -21,8 +23,7 @@ public class Member {
 	private String name;
 	@NonNull
 	private String password;
-	
-	// TODO 추후 다중 role 등록으로 수정
 	@NonNull
-	private String role;
+	private List<String> roles;
+	private List<String> roleNames;
 }

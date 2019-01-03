@@ -3,14 +3,44 @@
 
 <mapper namespace="shop.goodstudy.mall.example.member.mapper.MemberMapper">
 
-	<select id="findAll" resultType="member">
-		SELECT 
-			ID
-			, MEMBER_ID
-			, PASSWORD
-			, NAME
-			, ROLE
-		FROM MEMBER
+	<resultMap type="member" id="memberMap">
+		<result property="id" column="ID" />
+		<result property="memberId" column="MEMBER_ID" />
+		<result property="password" column="PASSWORD" />
+		<result property="name" column="NAME" />
+		<collection property="roles" ofType="String">
+			<result property="roleCode" column="ROLE_CODE" />
+		</collection>
+		<collection property="roleNames" ofType="String">
+			<result property="roleName" column="ROLE_NAME" />
+		</collection>
+	</resultMap>
+	
+
+<!-- 	<select id="findAll" resultType="member"> -->
+	<select id="findAll" resultMap="memberMap">
+		SELECT
+			A.*
+			, B.ROLE_CODE AS ROLES
+			, B.ROLE_NAME AS ROLE_NAMES
+		FROM (
+			SELECT 
+				ID
+				, MEMBER_ID
+				, PASSWORD
+				, NAME
+			FROM MEMBER
+			) A
+		JOIN (
+			SELECT 
+				C.MEMBER_ID
+				, C.ROLE_CODE
+				, D.ROLE_NAME
+			FROM MEMBER_ROLES C
+			JOIN ROLES D
+			ON C.ROLE_CODE = D.ROLE_CODE
+		) B
+		ON A.MEMBER_ID = B.MEMBER_ID
 	</select>
 
 	<select id="findById" resultType="member">
@@ -19,20 +49,36 @@
 			, MEMBER_ID
 			, PASSWORD
 			, NAME
-			, ROLE
 		FROM MEMBER
 		WHERE ID = #{id}
 	</select>
 
-	<select id="findByMemberId" resultType="member">
-		SELECT 
-			ID
-			, MEMBER_ID
-			, PASSWORD
-			, NAME
-			, ROLE
-		FROM MEMBER
-		WHERE MEMBER_ID = #{memberId}
+<!-- 	<select id="findByMemberId" resultType="member"> -->
+	<select id="findByMemberId" resultMap="memberMap">
+		SELECT
+			A.*
+			, B.ROLE_CODE AS ROLES
+			, B.ROLE_NAME AS ROLE_NAMES
+		FROM (
+			SELECT 
+				ID
+				, MEMBER_ID
+				, PASSWORD
+				, NAME
+			FROM MEMBER
+			WHERE MEMBER_ID = #{memberId}
+			) A
+		JOIN (
+			SELECT 
+				C.MEMBER_ID
+				, C.ROLE_CODE
+				, D.ROLE_NAME
+			FROM MEMBER_ROLES C
+			JOIN ROLES D
+			ON C.ROLE_CODE = D.ROLE_CODE
+			WHERE MEMBER_ID = #{memberId}
+		) B
+		ON A.MEMBER_ID = B.MEMBER_ID
 	</select>
 	
 	<insert id="add" parameterType="member" >
@@ -40,12 +86,10 @@
 			MEMBER_ID
 			, PASSWORD
 			, NAME
-			, ROLE
 		) VALUES (
 			#{memberId}
 			, #{password}
 			, #{name}
-			, #{role}
 		)
 	</insert>
 	
@@ -55,7 +99,6 @@
 			MEMBER_ID = #{memberId}
 			, PASSWORD = #{password}
 			, NAME = #{name}
-			, ROLE = #{role}
 		WHERE ID = #{id}
 	</update>
 	

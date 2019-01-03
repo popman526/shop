@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import shop.goodstudy.mall.example.member.mapper.MemberMapper;
+import shop.goodstudy.mall.example.member.mapper.MemberRolesMapper;
 import shop.goodstudy.mall.example.member.model.Member;
 import shop.goodstudy.mall.example.member.service.MemberService;
 
@@ -22,6 +23,9 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 	
 	@Autowired
 	private MemberMapper memberMapper;
+
+	@Autowired
+	private MemberRolesMapper memberRolesMapper;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -62,8 +66,13 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Member member = memberMapper.findByMemberId(username);
 		
+		List<String> roles = memberRolesMapper.findByMemberId(username);
+		
 		List<GrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority(member.getRole()));
+		for (String role : roles) {
+			authorities.add(new SimpleGrantedAuthority(role));
+		}
+		
 		
 		return new User(member.getMemberId(), member.getPassword(), authorities);
 		

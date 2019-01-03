@@ -14,7 +14,8 @@ function fnGetMembers() {
 				html += "<td>" + member.id + "</td>";
 				html += "<td>" + member.memberId + "</td>";
 				html += "<td>" + member.name + "</td>";
-				html += "<td>" + member.role + "</td>";
+				html += "<td>" + member.roles + "</td>";
+				html += "<td>" + member.roleNames + "</td>";
 				html += "</tr>";
 			});
 			

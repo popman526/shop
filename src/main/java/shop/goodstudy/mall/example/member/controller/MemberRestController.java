@@ -17,7 +17,8 @@ public class MemberRestController {
 	
 	@GetMapping("/members")
 	public List<Member> members() {
-		return memberService.findAll();
+		List<Member> list = memberService.findAll();
+		return list;
 	}
 	
 }

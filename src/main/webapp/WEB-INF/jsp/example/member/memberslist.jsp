@@ -11,8 +11,6 @@
 </head>
 <body>
 <%@include file="/WEB-INF/jsp/example/inc/header.jsp" %>
-	<a href="/home">home</a>
-	<a href="/hello">hello</a>
 	<h1>회원 목록</h1>
 	<table class="simple-table">
 		<thead>
@@ -21,6 +19,7 @@
 				<th>Member ID</th>
 				<th>Name</th>
 				<th>Role</th>
+				<th>Role Name</th>
 			</tr>
 		</thead>
 		<tbody id="members">

@@ -11,6 +11,7 @@
 	<h1>Hello World</h1>
 	<h2>This is JSP</h2>
 	<sec:authorize access="hasRole('ADMIN')">
+		<a href="/admin/home">관리자 홈</a><br>
 		<a href="memberslist">회원 리스트</a>
 	</sec:authorize>
 </body>

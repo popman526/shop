@@ -1,5 +1,7 @@
 package shop.goodstudy.mall.example.member.controller;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +33,7 @@ public class MemberController {
 	
 	@PostMapping("/member/join")
 	public String join(Member member) {
-		member.setRole("ROLE_CUSTOMER");
+		member.setRoles(Arrays.asList("ROLE_CUSTOMER"));
 		memberService.add(member);
 		return "redirect:/home";
 	}

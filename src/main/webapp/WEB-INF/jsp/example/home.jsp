@@ -12,7 +12,10 @@
 	<h1>Wellcome!!</h1>
 	<h2>HOME</h2>
 	<a href="/hello">hello</a>
-	<a href="/loginform">login</a>
-	<a href="/joinform">join</a>
+	
+	<sec:authorize access="!isAuthenticated()">
+		<a href="/loginform">login</a>
+		<a href="/joinform">join</a>
+	</sec:authorize>
 </body>
 </html>

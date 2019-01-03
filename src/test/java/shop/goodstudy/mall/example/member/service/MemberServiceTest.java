@@ -1,5 +1,6 @@
 package shop.goodstudy.mall.example.member.service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.FixMethodOrder;
@@ -39,8 +40,8 @@ public class MemberServiceTest {
 
 	@Test
 	public void test03_addmember() {
-		int a = service.add(new Member("admin1", "관리자1", "admin", "ADMIN"));
-		int b = service.add(new Member("member1", "회원1", "member", "CUSTOMER"));
+		int a = service.add(new Member("admin1", "관리자1", "admin", Arrays.asList("ROLE_ADMIN", "ROLE_CUSTOMER")));
+		int b = service.add(new Member("member1", "회원1", "member", Arrays.asList("ROLE_CUSTOMER")));
 		List<Member> members = service.findAll();
 		
 		log.info("a : {}", a);
@@ -50,8 +51,8 @@ public class MemberServiceTest {
 	
 	@Test
 	public void test04_modifymember() {
-		int a = service.modify(new Member(3L, "admin", "관리자", "admin", "ADMIN"));
-		int b = service.modify(new Member(4L, "member01", "회원01", "member", "CUSTOMER"));
+		int a = service.modify(new Member(3L, "admin", "관리자", "admin", Arrays.asList("ROLE_ADMIN", "ROLE_CUSTOMER"), Arrays.asList("관리자", "일반회원")));
+		int b = service.modify(new Member(4L, "member01", "회원01", "member", Arrays.asList("ROLE_CUSTOMER"), Arrays.asList("일반회원")));
 		List<Member> members = service.findAll();
 		
 		log.info("a : {}", a);
@@ -61,7 +62,7 @@ public class MemberServiceTest {
 	
 	@Test
 	public void test05_deletemember() {
-		int a = service.delete(new Member(4L, "member01", "회원1", "member", "CUSTOMER"));
+		int a = service.delete(new Member(4L, "member01", "회원1", "member", Arrays.asList("ROLE_CUSTOMER"), Arrays.asList("일반회원")));
 		
 		List<Member> members = service.findAll();
 		log.info("a : {}", a);
