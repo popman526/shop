@@ -86,6 +86,15 @@ table#product-info-write-table {
 						</tr>
 						<tr>
 							<td>
+								<div class="form-group">
+									<label for="quantity">상품수량</label> <input type="text"
+										class="form-control" id="quantity" name="quantity"
+										placeholder="상품수량" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
 								<button type="submit"
 									class="btn btn-success clearfix pull-right">상품등록</button>
 							</td>
@@ -96,7 +105,7 @@ table#product-info-write-table {
 		</div>
 	</div>
 
+	<script src="/js/product/writeForm.js"></script>
 	<%@ include file="/WEB-INF/jsp/include/footer.jspf"%>
 </body>
-<script src="/js/product/writeForm.js"></script>
 </html>
