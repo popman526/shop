@@ -28,7 +28,7 @@ shop.goodstudy.mall 패키지 내 아래와 같이 구성
   
 ## 3.	상품 MVC 구현
 * product 패키지 내 5개 하위 패키지 아래와 같이 구성  
-	- controller: ProductCreateController (상품 생성 컨트롤러), ProductShowController (상품 상세 컨트롤러), ProductWriteFormController (상품 글쓰기 컨트롤러)  
+	- controller: ProductDetailController (상품 상세 컨트롤러), ProductListController (상품 메인 컨트롤러)  
 	- mapper: ProductMapper (상품 생성과 관련한 매퍼 구현)  
 	- model: Product (상품 VO)  
 	- service: ProductService (인터페이스)  
@@ -37,12 +37,12 @@ shop.goodstudy.mall 패키지 내 아래와 같이 구성
   
 ## 4.	상품이미지 업로드 MVC 구현
 * image 패키지 내 5개 하위 패키지 아래와 같이 구성  
-	- (default): DownLoadImage (AbstractView를 이용해 이미지 다운로드 구현)  
 	- controller: ImageDownController (상품 이미지 다운로드 컨트롤러. viewname으로 downloadview를 입력하면 DownLoadImage 클래스의 메소드 호출하여 이미지 다운로드 수행. viewname을 입력 후 return하게 되면 downloadview.jsp를 찾게 되는데 WebConfig를 통해 @Bean을 등록하여 호출하게 함)  
 	- mapper: ImageMapper (상품 생성과 관련한 매퍼 구현)  
 	- model: Image (상품 VO)  
 	- service: ImageService (인터페이스)  
 	- service.impl: ImageServiceImpl (상품 관련 쿼리 수행 및 결과 전달)  
+	- (shop.goodstudy.mall.util): DownLoadImageUtils (AbstractView를 이용해 이미지 다운로드 구현)  
   
 * WebConfig.java  
 
