@@ -128,7 +128,7 @@ table#product-info-write-table {
 		</div>
 	</div>
 
-	<script src="/js/product/updateForm.js?ver=2"></script>
 	<%@ include file="/WEB-INF/jsp/include/footer.jspf"%>
 </body>
+<script src="/js/product/updateForm.js"></script>
 </html>
