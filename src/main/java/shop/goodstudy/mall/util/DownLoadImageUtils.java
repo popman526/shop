@@ -1,4 +1,4 @@
-package shop.goodstudy.mall.image;
+package shop.goodstudy.mall.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -11,8 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.view.AbstractView;
 
-public class DownLoadImage extends AbstractView {
+public class DownLoadImageUtils extends AbstractView {
+	
+	public static final String DELETE_LEGACY_FILES = "DELETE_LEGACY_FILES";
+	public static final String NOT_DELETE_LEGACY_FILES = "NOT_DELETE_LEGACY_FILES";
 
+	/**
+	 * 이미지: 상품 이미지 다운로드를 위한 메서드
+	 */
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model,
 			HttpServletRequest req, HttpServletResponse res) throws IOException {

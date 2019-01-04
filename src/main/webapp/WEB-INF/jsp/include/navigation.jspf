@@ -46,11 +46,12 @@
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse2">
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="/">Posts</a></li>
+        <li class="active"><a href="/">상품리스트</a></li>
         <c:choose>
         <c:when test="${not empty sessionScope.customer}">
         <li><a href="/users/logout" role="button">로그아웃</a></li>
         <li><a href="/users/updateForm?customer_id=${sessionScope.customer.customer_id}" role="button">개인정보수정</a></li>
+        <li><a href="/product/basket?customer_id=${sessionScope.customer.customer_id }" role="button">장바구니</a></li>
         </c:when>
         <c:otherwise>
         <li><a href="/customer/loginForm" role="button">로그인</a></li>

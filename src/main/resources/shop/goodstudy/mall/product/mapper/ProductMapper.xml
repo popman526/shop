@@ -10,6 +10,7 @@
               ,product_name
               ,product_state
               ,product_price
+              ,product_quantity
               ,reg_id
               ,reg_dt
           FROM product
@@ -32,12 +33,14 @@
              product_name
             ,product_state
             ,product_price
+            ,product_quantity
             ,reg_id
             ,reg_dt
       ) VALUES (
              #{product_name}
             ,#{product_state}
             ,#{product_price}
+            ,#{product_quantity}
             ,#{reg_id}
             ,sysdate()
       )
@@ -54,6 +57,7 @@
          product_name = #{product_name}
         ,product_state = #{product_state}
         ,product_price = #{product_price}
+        ,product_quantity = #{product_quantity}
         ,mod_id = #{mod_id}
         ,mod_dt = sysdate()
       WHERE product_id = #{product_id}

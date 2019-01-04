@@ -1,21 +1,30 @@
 package shop.goodstudy.mall.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import shop.goodstudy.mall.product.mapper.ProductMapper;
+import shop.goodstudy.mall.product.model.Product;
+import shop.goodstudy.mall.product.service.ProductService;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
-	private ProductMapper productMapper;
+	private ProductService productService;
 	
+	/**
+	 * 메인: 메인화면에 전체 상품 목록 불러오기
+	 * @param mav
+	 * @return
+	 */
 	@GetMapping("/")
 	public ModelAndView helloJsp(ModelAndView mav) {
-		mav.addObject("products", productMapper.selectAllProduct());
+		List<Product> products = productService.selectAllProduct();
+		mav.addObject("products", products);
 		mav.setViewName("home");
 		return mav;
 	}
