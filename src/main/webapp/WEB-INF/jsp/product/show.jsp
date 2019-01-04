@@ -124,7 +124,7 @@
 		</div>
 	</article>
 </script>
-	<script src="/js/product/show.js"></script>
 	<%@ include file="/WEB-INF/jsp/include/footer.jspf"%>
 </body>
+<script src="/js/product/show.js"></script>
 </html>

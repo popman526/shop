@@ -8,9 +8,9 @@ import shop.goodstudy.mall.image.model.Image;
 
 @Mapper
 public interface ImageMapper {
-	int insertImage(Image image);
+	List<Image> selectAllImagesByProductId(long product_id); // 상품 상세 조회 시 모든 이미지 조회
+	int insertImage(Image image); // 상품 글쓰기(이미지)
 	Image downloadMainImage(int product_id);
-	List<Image> selectAllImageIdByProductId(long product_id);
 	Image downloadContentImage(int image_id);
 	int deleteAllImageByProductId(long product_id);
 }
