@@ -1,7 +1,9 @@
-package shop.goodstudy.mall;
+package shop.goodstudy.mall.config;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+
+import shop.goodstudy.mall.ShopApplication;
 
 public class ServletInitializer extends SpringBootServletInitializer {
 
