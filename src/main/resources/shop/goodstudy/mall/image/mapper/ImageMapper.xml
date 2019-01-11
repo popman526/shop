@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shop.goodstudy.mall.image.mapper.ImageMapper">
+
+	<select id="selectAllImagesByProductId" resultType="Image">
+        SELECT image_id
+              ,image_name
+          FROM product_image
+         WHERE product_id = #{product_id}
+         ORDER BY image_id
+    </select>
+
+    <insert id="insertImage" parameterType="Image">
+      INSERT INTO product_image (
+             physical_name
+            ,image_name
+            ,imagefile
+            ,product_id
+      ) VALUES (
+             #{physical_name}
+            ,#{image_name}
+            ,#{imagefile}
+            ,#{product_id}
+      )
+    </insert>
+    
+    <select id="downloadMainImage" resultType="Image">
+        SELECT imagefile
+          FROM product_image
+         WHERE product_id = #{product_id}
+         ORDER BY image_id
+         LIMIT 1
+    </select>
+    
+    <select id="downloadContentImage" resultType="Image">
+        SELECT imagefile
+          FROM product_image
+         WHERE image_id = #{image_id}
+         ORDER BY image_id
+    </select>
+    
+    <delete id="deleteAllImageByProductId">
+        DELETE FROM product_image
+        WHERE product_id = #{product_id}
+    </delete>
+
+</mapper>
