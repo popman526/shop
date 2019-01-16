@@ -28,7 +28,7 @@ import shop.goodstudy.mall.order.mapper.OrderMapper;
 import shop.goodstudy.mall.order.model.OrderDetailVO;
 import shop.goodstudy.mall.order.model.OrderVO;
 import shop.goodstudy.mall.order.service.OrderService;
-import shop.goodstudy.mall.util.CustomerSessionUtils;
+//import shop.goodstudy.mall.util.CustomerSessionUtils;
 
 @Controller
 public class OrderListController {
@@ -54,8 +54,8 @@ public class OrderListController {
 		OrderDetailVO orderDetailVO= new OrderDetailVO();
 		List<OrderDetailVO> oDetail = new ArrayList<OrderDetailVO>();
 		
-		Customer customer = CustomerSessionUtils.getCustomerFromSession(request.getSession());
-		orderVO.setCustomer_code(customer.getCustomer_code());
+		//Customer customer = CustomerSessionUtils.getCustomerFromSession(request.getSession());
+		//orderVO.setCustomer_code(customer.getCustomer_code());
 		
 		for( int price : prices ) {
 			orderVO.setOrder_total_price(price);
