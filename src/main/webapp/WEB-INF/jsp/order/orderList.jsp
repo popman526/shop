@@ -72,4 +72,5 @@
 </script>
 <%@ include file="/WEB-INF/jsp/include/footer.jspf"%>
 </body>
+<script src="/js/order/order.js"></script>
 </html>
