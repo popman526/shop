@@ -41,6 +41,10 @@ img.main_img {
 							<div class="article-author-name">상품명: ${product.product_name }</div>
 							<div class="article-author-name">구매수량: ${buyCount }</div>
 							<div class="article-author-name">총가격: ${product.product_price }</div>
+							<input type="hidden" name="order_quantity" value="${buyCount }"/>
+							<input type="hidden" name="product_id" value="${product.product_id }"/>
+							<input type="hidden" name="product_name" value="${product.product_name }"/>
+							<input type="hidden" name="product_price" value="${product.product_price }"/>
 							<div><button type="submit" class="btn btn-success clearfix pull-right">결제하기</button></div>
 						</form>
 					</article>

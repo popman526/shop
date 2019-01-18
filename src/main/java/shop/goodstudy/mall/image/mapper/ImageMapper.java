@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import shop.goodstudy.mall.image.model.Image;
+import shop.goodstudy.mall.image.model.Thumbnail;
 
 @Mapper
 public interface ImageMapper {
@@ -13,4 +14,8 @@ public interface ImageMapper {
 	Image downloadMainImage(int product_id); // 메인 이미지 다운로드
 	Image downloadContentImage(int image_id); // 상품 상세 이미지 전체 다운로드
 	int deleteAllImageByProductId(long product_id); // 상품 이미지 삭제
+	
+	Thumbnail downloadThumbnail(int product_id);
+	int insertThumbnail(Thumbnail thumbnail);
+	int countThumbnail(int product_id);
 }
