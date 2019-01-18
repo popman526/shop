@@ -49,7 +49,7 @@
 								<article class="article">
 									<div class="article-img">
 										<img
-											src="/image/downloadContentImage?image_id=${each.image_id}"
+											src="/product/downloadContentImage?image_id=${each.image_id}"
 											id="article-img">
 									</div>
 								</article>
@@ -126,5 +126,6 @@
 </script>
 	<%@ include file="/WEB-INF/jsp/include/footer.jspf"%>
 </body>
+<script src="/js/cookie.js"></script>
 <script src="/js/product/show.js"></script>
 </html>
