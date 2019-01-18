@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import shop.goodstudy.mall.customer.model.Customer;
 import shop.goodstudy.mall.customer.service.CustomerService;
 
@@ -21,19 +22,18 @@ public class LoginController {
     @Autowired
     private CustomerService customerService;
 
+    // 로그인 페이지 요청
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginFormJsp() {
         return "customer/login";
     }
 
+    // 로그인 요청
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginJsp(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String customer_id = request.getParameter("customer_id");
-        String customer_pw = request.getParameter("customer_pw");
+    public String loginJsp(@RequestParam("customer_id") String customer_id,
+                           @RequestParam("customer_pw") String customer_pw,
+                           HttpSession session) throws Exception {
         Customer customer = customerService.readCustomer(customer_id);
-
-        response.setContentType("text/html;charset=utf-8");
-        PrintWriter out = response.getWriter();
 
         // 회원가입이 안되었을 경우
         if (customer == null) {
@@ -42,7 +42,6 @@ public class LoginController {
 
         // 패스워드 일치 여부
         if (customer.matchPassword(customer_pw)) {
-            HttpSession session = request.getSession();
             session.setAttribute("customer", customer);
             return "redirect:/";
         } else {
