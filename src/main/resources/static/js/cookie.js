@@ -22,14 +22,9 @@ function getCookie(cookie_name) {
 	}
 }
 
-function getCookies(cookie_name) {
-	var value = document.cookie.match('(^|;) ?' + cookie_name + '=([^;]*)(;|$)');
-	return value ? value[2] : null;
-};
-
 function addCookie(id) {
 	var items = getCookie('productItems'); // 이미 저장된 값을 쿠키에서 가져오기
-	var maxItemNum = 5; // 최대 저장 가능한 아이템개수
+	var maxItemNum = 8; // 최대 저장 가능한 아이템개수
 	var expire = 7; // 쿠키값을 저장할 기간
 	if (items) {
 		var itemArray = items.split(',');
@@ -40,7 +35,7 @@ function addCookie(id) {
 			// 새로운 값 저장 및 최대 개수 유지하기
 			itemArray.unshift(id);
 			if (itemArray.length > maxItemNum)
-				itemArray.length = 5;
+				itemArray.length = 8;
 			items = itemArray.join(',');
 			setCookie('productItems', items, expire);
 		}

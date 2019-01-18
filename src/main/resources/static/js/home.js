@@ -21,7 +21,7 @@ function chkRecent(a) {
 										+ thisItem
 										+ '"  width="75" border=1></a><div class="detail"><a href="javascript:removeRecentItem(\''
 										+ thisItem
-										+ '\')" class="btn_delete">삭제</a></div></li>')
+										+ '\')" class="btn_delete" title="삭제"></a></div></li>')
 			}
 		}
 		$("#paging").show();
@@ -37,8 +37,14 @@ chkRecent(1);
 
 function removeRecentItem(itemname) {
 	var items = getCookie('productItems');
-	items = items.replace(itemname + "&", "");
-	setCookie('productItems', items, 1);
+	var newItems = items.replace(itemname + ",", "");
+	if (items == newItems) { //마지막 아이템은 다른 방법으로 삭제해야 함
+		newItems = items.replace("," + itemname, "");
+		setCookie('productItems', newItems, 7);
+		if (items == newItems) { //1개만 남았을 때 모두 지우기
+			document.cookie = 'productItems=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+		}
+	}
 	chkRecent(Cpage);
 }
 

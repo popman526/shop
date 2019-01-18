@@ -526,7 +526,7 @@ h3, h4, h5 {
 	margin-left: 510px;
 	border: 1px solid #B0B5BD;
 	width: 114px;
-	height: 543px;
+	height: 420px;
 }
 
 #rightSide #right_zzim  div {
@@ -545,8 +545,9 @@ h3, h4, h5 {
 }
 
 #rightSide #right_zzim ul {
-	min-height: 495px;
+	min-height: 350px;
 	list-style: none;
+	padding-left: 0px;
 }
 
 #rightSide #right_zzim li {
@@ -563,12 +564,12 @@ h3, h4, h5 {
 	display: none;
 	position: absolute;
 	top: 3px;
-	right: 20px;
-	xheight: 40px;
-	xpadding: 15px 11px 0;
-	xbackground: #404a59;
+	right: 18px;
+	height: 18px;
+	padding: 10px;
+	background: #ffffff;
 	color: #fff;
-	xtext-align: left;
+	text-align: left;
 	white-space: nowrap;
 }
 
@@ -580,9 +581,9 @@ h3, h4, h5 {
 	position: absolute;
 	top: 3px;
 	right: -1px;
-	width: 11px;
-	height: 11px;
-	background: url(/images/delete_today_item.png) no-repeat -193px -111px;
+	width: 15px;
+	height: 15px;
+	background: url(../images/delete_today_item.png) no-repeat;
 	text-indent: -9000px;
 }
 
@@ -599,7 +600,7 @@ h3, h4, h5 {
 .noData {
 	color: #ccc;
 	text-align: center;
-	margin-top: 223px;
+	margin-top: 123px;
 }
 
 }
@@ -611,11 +612,11 @@ h3, h4, h5 {
 
 #paging .btn_prev {
 	position: absolute;
-	top: 526px;
+	top: 395px;
 	left: 4px;
 	width: 13px;
 	height: 11px;
-	background: url(/images/ico_arrow.png) no-repeat;
+	background: url(../images/ico_arrow_left.png) no-repeat;
 	text-indent: -9000px;
 	border: 1px solid #CCC;
 	display: inline-block;
@@ -623,11 +624,11 @@ h3, h4, h5 {
 
 #paging .btn_next {
 	position: absolute;
-	top: 526px;
+	top: 395px;
 	right: 4px;
 	width: 13px;
 	height: 11px;
-	background: url(/images/ico_arrow.png) -11px 0px;
+	background: url(../images/ico_arrow_right.png) -11px 0px;
 	text-indent: -9000px;
 	border: 1px solid #CCC;
 	display: inline-block;
