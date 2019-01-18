@@ -126,5 +126,6 @@
 </script>
 	<%@ include file="/WEB-INF/jsp/include/footer.jspf"%>
 </body>
+<script src="/js/cookie.js"></script>
 <script src="/js/product/show.js"></script>
 </html>
