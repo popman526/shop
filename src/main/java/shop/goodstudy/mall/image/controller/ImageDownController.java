@@ -23,7 +23,7 @@ public class ImageDownController {
 	 * @param mav
 	 * @return
 	 */
-	@GetMapping("/product/downloadMainImage")
+	@GetMapping("/image/downloadMainImage")
 	public ModelAndView downloadMainImage(HttpServletRequest request, ModelAndView mav) {
 		int product_id=Integer.parseInt((request.getParameter("product_id")));
 		Image image= imageService.downloadMainImage(product_id);
@@ -39,7 +39,7 @@ public class ImageDownController {
 	 * @param mav
 	 * @return
 	 */
-	@GetMapping("/product/downloadContentImage")
+	@GetMapping("/image/downloadContentImage")
 	public ModelAndView downloadContentImage(HttpServletRequest request, ModelAndView mav) {
 		int image_id=Integer.parseInt((request.getParameter("image_id")));
 		Image image= imageService.downloadContentImage(image_id);

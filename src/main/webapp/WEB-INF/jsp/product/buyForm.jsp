@@ -34,7 +34,7 @@ img.main_img {
 								<div class="main_img" title="메인이미지">
 									<a style="cursor: pointer;" class="btn-example"
 										href="/product/show?product_id=${product.product_id}"> <img
-										src="/product/downloadMainImage?product_id=${product.product_id}"
+										src="/image/downloadMainImage?product_id=${product.product_id}"
 										id="main_img"></a>
 								</div>
 							</div>

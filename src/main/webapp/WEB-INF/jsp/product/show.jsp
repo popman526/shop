@@ -49,7 +49,7 @@
 								<article class="article">
 									<div class="article-img">
 										<img
-											src="/product/downloadContentImage?image_id=${each.image_id}"
+											src="/image/downloadContentImage?image_id=${each.image_id}"
 											id="article-img">
 									</div>
 								</article>

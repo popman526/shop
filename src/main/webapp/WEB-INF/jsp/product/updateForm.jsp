@@ -44,7 +44,7 @@ table#product-info-write-table {
 										<article class="article">
 											<div class="article-img">
 												<img
-													src="/product/downloadContentImage?image_id=${each.image_id}" width="455px" height="400px"
+													src="/image/downloadContentImage?image_id=${each.image_id}" width="455px" height="400px"
 													id="article-img">
 											</div>
 										</article>

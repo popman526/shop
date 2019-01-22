@@ -23,7 +23,7 @@
 							</strong>
 							<div class="main_img" title="메인이미지">
 								<a style="cursor: pointer;" class="btn-example" href="/product/show?product_id=${each.product_id}">
-                                <img src="/product/downloadMainImage?product_id=${each.product_id}" id="main_img"></a>
+                                <img src="/image/downloadMainImage?product_id=${each.product_id}" id="main_img"></a>
 							</div>
 							<div class="auth-info">
 								<i class="icon-add-comment"></i>

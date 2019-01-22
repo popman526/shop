@@ -28,7 +28,7 @@
 						<c:forEach items="${images}" var="each">
 							<article class="article">
 								<div class="article-img">
-									<img src="/product/downloadContentImage?image_id=${each.image_id}" id="article-img">
+									<img src="/image/downloadContentImage?image_id=${each.image_id}" id="article-img">
 								</div>
 							</article>
                             </c:forEach>
