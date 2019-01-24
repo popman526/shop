@@ -28,7 +28,7 @@ img.main_img {
 				</header>
 				<div class="content-main">
 					<article class="article">
-						<form action="/order/product" method="post"> <!-- 주문 action mapping -->
+						<form action="/order/product" method="post" id = "orderForm"> <!-- 주문 action mapping -->
 							<div class="article-header"></div>
 							<div class="article-images">
 								<div class="main_img" title="메인이미지">
@@ -129,6 +129,9 @@ img.main_img {
 		    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 		    		}
 		    	});
+		    	
+		    	$("#orderForm").submit();
+		    	
 		    } else {
 		        var msg = '결제에 실패하였습니다.';
 		        msg += '에러내용 : ' + rsp.error_msg;
