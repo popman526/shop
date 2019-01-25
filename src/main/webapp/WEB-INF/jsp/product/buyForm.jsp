@@ -105,17 +105,14 @@ img.main_img {
 		    buyer_postcode : '123-456'
 		}, function(rsp) {
 		    if ( rsp.success ) {
-		    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 		    	jQuery.ajax({
 		    		url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
 		    		type: 'POST',
 		    		dataType: 'json',
 		    		data: {
 			    		imp_uid : rsp.imp_uid
-			    		//기타 필요한 데이터가 있으면 추가 전달
 		    		}
 		    	}).done(function(data) {
-		    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 		    		if ( everythings_fine ) {
 		    			var msg = '결제가 완료되었습니다.';
 		    			msg += '\n고유ID : ' + rsp.imp_uid;
