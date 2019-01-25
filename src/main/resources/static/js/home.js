@@ -17,7 +17,7 @@ function chkRecent(a) {
 						.append(
 								'<li><a href="/product/show?product_id='
 										+ thisItem
-										+ '" target="_top"><img src="/product/downloadMainImage?product_id='
+										+ '" target="_top"><img src="/image/downloadMainImage?product_id='
 										+ thisItem
 										+ '"  width="75" border=1></a><div class="detail"><a href="javascript:removeRecentItem(\''
 										+ thisItem
