@@ -7,15 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import shop.goodstudy.mall.common.CustomerSessionUtils;
 import shop.goodstudy.mall.customer.model.Customer;
 import shop.goodstudy.mall.product.model.Product;
 import shop.goodstudy.mall.product.service.ProductService;
-import shop.goodstudy.mall.common.CustomerSessionUtils;
 
 @Controller
 public class ProductListController {
@@ -57,4 +58,13 @@ public class ProductListController {
         
         return "redirect:/";
 	}
+    
+    @GetMapping("/")
+    public String home(Model model) {
+    	
+    	model.addAttribute("products",productService.selectAllProduct());
+    	return "home";
+    	
+    }//end of home
+    
 }

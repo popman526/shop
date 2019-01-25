@@ -29,6 +29,7 @@ public class ImageDownController {
 	@GetMapping("/image/downloadMainImage")
 	public ModelAndView downloadMainImage(HttpServletRequest request, ModelAndView mav) {
 		int product_id=Integer.parseInt((request.getParameter("product_id")));
+		System.out.println(product_id);
 		Image image= imageService.downloadMainImage(product_id);
 		mav.addObject("imagefile", image.getImagefile());
 		mav.setViewName("downloadview");
