@@ -30,8 +30,8 @@ public class ProductServiceImpl implements ProductService {
 	 * 상품: 모든 상품 리스트 조회
 	 */
 	@Override
-	public List<Product> selectAllProduct() {
-		return productMapper.selectAllProduct();
+	public List<Product> selectAllProduct(int startRow, int endRow) {
+		return productMapper.selectAllProduct(startRow, endRow);
 	}
 
 	/**
@@ -109,6 +109,14 @@ public class ProductServiceImpl implements ProductService {
 	public void deleteProductByProductId(Long product_id) {
 		productMapper.deleteProductByProductId(product_id);
 		imageMapper.deleteAllImageByProductId(product_id);
+	}
+
+	/**
+	 * 상품: 전체 상품 등록 개수 불러오기(페이징 처리 위함)
+	 */
+	@Override
+	public int getProductCount() {
+		return productMapper.getProductCount();
 	}
 	
 }

@@ -34,10 +34,12 @@ public class ProductDetailController {
     @GetMapping("/product/show")
     public ModelAndView productShow(HttpServletRequest request) {
     	long product_id = Long.parseLong(request.getParameter("product_id"));
+    	String pageNum = request.getParameter("pageNum");
 
     	ModelAndView mav = new ModelAndView();
     	mav = productService.selectProductByProductId(product_id, mav);
         mav.setViewName("/product/show");
+        mav.addObject("pageNum", pageNum);
         return mav;
 	}
     

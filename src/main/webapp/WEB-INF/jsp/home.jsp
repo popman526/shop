@@ -14,17 +14,23 @@
 	<div class="container" id="main">
 		<div class="col-md-12 col-sm-12 col-lg-10 col-lg-offset-1">
 			<div class="panel panel-default qna-list">
+			<br> <b>(전체 글:${count})</b>
 				<ul class="list">
+					<c:if test="${count == 0 }">
+						<li>
+							<strong>게시된 상품이 없습니다. 상품을 올려주세요.</strong>
+						</li>
+					</c:if>
 					<c:forEach items="${products}" var="each">
 						<li>
 							<div class="wrap">
 								<div class="main">
 									<strong class="subject"> <a
-										href="/product/show?product_id=${each.product_id}">${each.product_name}</a>
+										href="/product/show?product_id=${each.product_id}&pageNum=${pageNum}">${each.product_name}</a>
 									</strong>
 									<div class="main_img" title="${each.product_name}">
 										<a style="cursor: pointer;" class="btn-example"
-											href="/product/show?product_id=${each.product_id}"> <img
+											href="/product/show?product_id=${each.product_id}&pageNum=${pageNum}"> <img
 											src="/image/downloadMainImage?product_id=${each.product_id}"
 											id="main_img"></a>
 									</div>
@@ -42,13 +48,7 @@
 					<div class="col-md-3"></div>
 					<div class="col-md-6 text-center">
 						<ul class="pagination center-block" style="display: inline-block;">
-							<li><a href="#">«</a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">»</a></li>
+							<li>${pageCode }</li>
 						</ul>
 					</div>
 					<div class="col-md-3 qna-write">

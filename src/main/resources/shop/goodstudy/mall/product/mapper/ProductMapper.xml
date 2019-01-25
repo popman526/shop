@@ -24,8 +24,21 @@
               ,product_price
               ,reg_id
               ,reg_dt
-          FROM product
-          ORDER BY product_id desc
+          FROM 
+          (
+          	SELECT @rownum:=@rownum+1 rm
+          	      ,prd.*
+          	  FROM
+          	  (
+          	  	SELECT *
+          	  	  FROM product
+          	  ) prd
+          	  ORDER BY product_id desc
+          ) prdall
+          ,(
+          	SELECT @rownum:=0
+          ) rnt
+          WHERE rm between #{startRow} and #{endRow}
     </select>
 
     <insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="product_id">
@@ -62,5 +75,10 @@
         ,mod_dt = sysdate()
       WHERE product_id = #{product_id}
     </update>
+    
+    <select id="getProductCount" resultType="Integer">
+      SELECT count(*)
+        FROM product;
+    </select>
 
 </mapper>

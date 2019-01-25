@@ -41,7 +41,7 @@
 										</form>
 									</li>
 								</c:if>
-								<li><a class="link-modify-article" href="/">목록</a></li>
+								<li><a class="link-modify-article" href="/?pageNum=${pageNum }">목록</a></li>
 							</ul>
 						</div>
 						<div class="article-images">

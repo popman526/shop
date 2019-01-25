@@ -34,3 +34,5 @@ function changeBuyCountSelect() {
 	var totalPrice = product_price * buyCount;
 	document.getElementById("product_price").value = totalPrice;
 }
+
+addCookie(document.getElementById("product_id").value);
