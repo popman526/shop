@@ -1,7 +1,7 @@
 package shop.goodstudy.mall.common;
-
+//
 public class PagingUtils {
-	
+	  
 	private int totalPage, startPage, endPage;
 	private int startRow, endRow;
 	private StringBuilder sb;
