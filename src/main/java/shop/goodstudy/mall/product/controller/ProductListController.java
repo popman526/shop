@@ -59,12 +59,4 @@ public class ProductListController {
         return "redirect:/";
 	}
     
-    @GetMapping("/")
-    public String home(Model model) {
-    	
-    	model.addAttribute("products",productService.selectAllProduct());
-    	return "home";
-    	
-    }//end of home
-    
 }
