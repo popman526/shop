@@ -1,31 +1,28 @@
 package shop.goodstudy.mall.customer.controller;
 
-import java.io.PrintWriter;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import org.springframework.web.bind.annotation.RequestParam;
+
 import shop.goodstudy.mall.customer.model.Customer;
 import shop.goodstudy.mall.customer.service.CustomerService;
 
 @Controller
-@RequestMapping("/customer/*")
+@RequestMapping("customer")
 public class LoginController {
 
     @Autowired
     private CustomerService customerService;
 
     // 로그인 페이지 요청
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @GetMapping("loginForm")
     public String loginFormJsp() {
-        return "customer/login";
+        return "customer/loginForm";
     }
 
     // 로그인 요청

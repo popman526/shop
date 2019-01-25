@@ -27,7 +27,8 @@ public class JoinController {
 
     // 회원가입 폼 창 요청
     @RequestMapping(value = "/join", method = RequestMethod.GET)
-    public void registerGET(Customer customer) {
+    public String registerGET(Customer customer) {
+    	return "customer/joinForm";
     }
 
     // 회원가입 요청
