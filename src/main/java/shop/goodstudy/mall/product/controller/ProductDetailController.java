@@ -110,11 +110,13 @@ public class ProductDetailController {
     @PostMapping("/product/buy")
     public ModelAndView productBuyJsp(@ModelAttribute Product product, HttpServletRequest request) {
     	long buyCount = Long.parseLong(request.getParameter("buyCount"));
+    	String finalPrice = request.getParameter("hidden_finalPrice");
     	
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/product/buyForm");
         mav.addObject("product", product);
         mav.addObject("buyCount", buyCount);
+        mav.addObject("finalPrice", finalPrice);
         return mav;
 	}
 }
