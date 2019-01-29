@@ -56,13 +56,15 @@
 							</c:forEach>
 						</div>
 						<div>
-							<form name="buyForm" method="post">
+							<form name="buyForm">
+								<input type = "hidden" id = "customer_id" name = "customer_id" value = "${customer.customer_id}">
 								<input type="hidden" id="product_id" name="product_id"
-									value="${product.product_id}"> <input type="hidden"
+									value="${product.product_id}"> 
+								<input type="hidden"
 									id="product_name" name="product_name"
 									value="${product.product_name}"> <input type="hidden"
 									id="temp_product_price" value="${product.product_price}">
-								<button id="basket-button"
+								<button id="basket-button" type = "button"
 									class="btn btn-success clearfix pull-right" onclick="basket();">장바구니</button>
 								<button id="buyProduct-button"
 									class="btn btn-success clearfix pull-right"
@@ -73,7 +75,7 @@
 									name="product_price" readonly="readonly">
 								<div class="article-author-name pull-right">가격</div>
 								<div class="article-author-name pull-right">|</div>
-								<select name="buyCount" id="buyCount" class="pull-right"
+								<select name="order_quantity" id="buyCount" class="pull-right"
 									onchange="changeBuyCountSelect();">
 									<option value="1" selected="selected">1</option>
 									<option value="2">2</option>
@@ -94,38 +96,28 @@
 			</div>
 		</div>
 	</div>
-
-	<script type="text/template" id="answerTemplate">
-	<article class="article">
-		<div class="article-header">
-			<div class="article-header-thumb">
-				<img src="https://graph.facebook.com/v2.3/1324855987/picture" class="article-author-thumb" alt="">
-			</div>
-			<div class="article-header-text">
-				{0}
-				<div class="article-header-time">{1}</div>
-			</div>
-		</div>
-		<div class="article-doc comment-doc">
-			{2}
-		</div>
-		<div class="article-util">
-		<ul class="article-util-list">
-			<li>
-				<a class="link-modify-article" href="/api/product/updateAnswer/{3}">수정</a>
-			</li>
-			<li>
-				<form class="form-delete" action="/api/product/deleteAnswer" method="POST">
-					<input type="hidden" name="answerId" value="{4}" />
-					<button type="submit" class="link-delete-article">삭제</button>
-				</form>
-			</li>
-		</ul>
-		</div>
-	</article>
-</script>
 	<%@ include file="/WEB-INF/jsp/include/footer.jspf"%>
+	<div id="cartModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modal-body">
+      	<p><strong>장바구니 담기에 성공하셨습니다! 장바구니로 바로 가시겠습니까?</strong></p>
+      </div>
+      <div class="modal-footer">
+          <div class="col-md-12">
+          <button class="btn" onClick = "getCart()">예</button>
+          <button class="btn" data-dismiss="modal" aria-hidden="true">아니오</button>
+      	  </div>
+      </div>
+  </div>
+  </div>
+</div>
 </body>
+<script src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
+<script src = "/js/bootstrap.min.js"></script>
 <script src="/js/cookie.js"></script>
 <script src="/js/product/show.js"></script>
 </html>

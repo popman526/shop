@@ -1,17 +1,28 @@
 function basket() {
-	var product_id = document.getElementById("product_id").value;
-	var product_name = document.getElementById("product_name").value;
-	var buyCount = document.getElementById("buyCount").value;
-
-	alert("장바구니에 담았습니다!!\n상품id: "+product_id+"\n상품명: "+product_name+"\n구매수량: "+buyCount);
 	
-	//임시로 상품상세화면을 다시 불러오게 함.
-	//장바구니 기능을 구현한 후 아래 내용은 삭제할 것.
-	//장바구니ex) 구매 화면으로 간다 / 계속 쇼핑하기
-	var form=document.buyForm;
-	form.method = "get";
-	form.action = "/product/show?product_id=" + product_id;
-	form.submit();
+	var cart = {
+			"customer_id": $("#customer_id").val(),
+			"product_id": $("#product_id").val(),
+			"order_quantity": $("#buyCount").val(),
+			"order_total_price": $("#product_price").val()
+	};
+	
+	$.ajax({
+		type: 'post',
+		url: '/cart',
+		data: cart,
+		dataType: 'json',
+		error: function(xhr, status, error){
+            alert('장바구니 담기에 실패했습니다.');
+        },
+        success: function(data){
+        	if(data == true){
+        		$("#cartModal").modal();
+        	}
+        }
+        
+	});
+	
 }
 
 function buyProduct() {
@@ -36,3 +47,7 @@ function changeBuyCountSelect() {
 }
 
 addCookie(document.getElementById("product_id").value);
+
+function getCart(){
+	location.href="/cart";
+}
