@@ -8,7 +8,7 @@ public class PagingUtils {
 
 	public void paging(int pageNum, int count, int pageSize, int pageBlock) {
 		totalPage = (int) Math.ceil((double) count / pageSize); // 전체 페이지
-		startRow = (pageNum - 1) * pageSize + 1; // 시작 게시글 번호 지정
+		startRow = (pageNum - 1) * pageSize; // 시작 게시글 번호 지정
 		endRow = pageNum * pageSize; // 끝 게시글 번호 지정
 
 		startPage = (int) ((pageNum - 1) / pageBlock) * pageBlock + 1;

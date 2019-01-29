@@ -7,6 +7,9 @@
 <html lang="kr">
 <head>
 <%@ include file="/WEB-INF/jsp/include/header.jspf"%>
+<style>
+   .fs_15 { font-size: 15px; }
+ </style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/jsp/include/navigation.jspf"%>
@@ -89,9 +92,35 @@
 									<option value="10">10</option>
 								</select>
 								<div class="article-author-name pull-right">수량</div>
+								<input type="hidden" id="hidden_finalPrice" name="hidden_finalPrice" />
 							</form>
 						</div>
 					</article>
+					<input type="hidden" id="hidden_coupon_name" name="coupon_name"  >
+					<input type="hidden" id="hidden_discount" name="discount"  >
+					<table>
+						<tr>
+							<td>
+								<div>
+									<button class="btn btn-primary clearfix pull-left" onclick="couponApply();">쿠폰적용</button>
+								</div>
+							</td>
+							<td>
+								<div>
+									<button id="coupon_del" style="display: none;" class="btn btn-primary clearfix pull-left" onclick="couponDelete();">쿠폰삭제</button>
+								</div>
+							</td>
+							<td>
+								<div id="couponName"></div>
+							</td>
+							<td>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="fs_15"><font color="blue">최종가격:</font></label> &nbsp;&nbsp;
+							</td>
+							<td>
+								<div id="finalPrice"></div>
+							</td>
+						</tr>
+					</table>
 				</div>
 			</div>
 		</div>
@@ -120,4 +149,5 @@
 <script src = "/js/bootstrap.min.js"></script>
 <script src="/js/cookie.js"></script>
 <script src="/js/product/show.js"></script>
+<script src="/js/order/order.js"></script>
 </html>

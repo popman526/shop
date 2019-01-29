@@ -45,6 +45,7 @@ public class HomeController {
 		pagingUtils.paging(Integer.parseInt(pageNum), count, pageSize, pageBlock);
 		pageCode = pagingUtils.getSb().toString();
 		
+		System.out.println(pagingUtils.getStartRow());
 		if (count > 0) { 
 			products = productService.selectAllProduct(pagingUtils.getStartRow(), pagingUtils.getEndRow()); // 현재 페이지에 해당하는 글 목록 가져오기
 		} else {

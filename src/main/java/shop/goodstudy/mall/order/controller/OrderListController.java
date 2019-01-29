@@ -44,7 +44,8 @@ public class OrderListController {
 	public ModelAndView insertOrder(  
 			HttpServletRequest request,
 			@RequestParam(value="order_quantity", required=true) List<Integer> order_quantities,
-			@RequestParam(value="product_price", required=true) List<Integer> prices,
+			@RequestParam(value="product_price", required=false) List<Integer> prices,
+			@RequestParam(value="finalPrice", required=true) List<Integer> finalPrices,
 			@RequestParam(value="product_id", required=true) List<Integer> product_ids,
 			@RequestParam(value="product_name", required=true) List<String> product_names
 			) throws Exception {
@@ -57,10 +58,10 @@ public class OrderListController {
 		//Customer customer = CustomerSessionUtils.getCustomerFromSession(request.getSession());
 		//orderVO.setCustomer_code(customer.getCustomer_code());
 		
-		for( int price : prices ) {
+		for( int price : finalPrices ) {
 			orderVO.setOrder_total_price(price);
 			
-			idx = prices.indexOf(price);
+			idx = finalPrices.indexOf(price);
 			orderDetailVO.setProduct_price(price );
 			int product_id = product_ids.get(idx);
 			orderDetailVO.setProduct_id(product_id);

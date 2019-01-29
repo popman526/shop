@@ -44,6 +44,9 @@ function changeBuyCountSelect() {
 	
 	var totalPrice = product_price * buyCount;
 	document.getElementById("product_price").value = totalPrice;
+	
+	// 쿠폰적용된 최종가격 계산
+	setFinalPriceWithCoupon();
 }
 
 addCookie(document.getElementById("product_id").value);
