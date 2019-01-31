@@ -4,6 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="shop.goodstudy.mall.product.mapper.ProductMapper">
+	
+	<resultMap type="customer" id="customer"></resultMap>
 
     <select id="selectProductByProductId" resultType="product">
         SELECT product_id
@@ -67,6 +69,13 @@
     <select id="getProductCount" resultType="Integer">
       SELECT count(*)
         FROM product;
+    </select>
+    
+    <select id ="getCartList" parameterType = "String" resultType = "product">
+    	SELECT *
+    	FROM product, cart
+    	where product.PRODUCT_ID = cart.PRODUCT_ID
+    	AND cart.CUSTOMER_ID = #{customer_id}
     </select>
 
 </mapper>
