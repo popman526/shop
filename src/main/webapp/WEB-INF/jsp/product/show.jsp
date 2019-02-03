@@ -11,7 +11,7 @@
    .fs_15 { font-size: 15px; }
  </style>
 </head>
-<body>
+<body onload="setFinalPriceWithCoupon();">
 	<%@ include file="/WEB-INF/jsp/include/navigation.jspf"%>
 
 	<input type="hidden" id="customerId" name="customerId"
@@ -59,7 +59,7 @@
 							</c:forEach>
 						</div>
 						<div>
-							<form name="buyForm">
+							<form name="buyForm" >
 								<input type = "hidden" id = "customer_id" name = "customer_id" value = "${customer.customer_id}">
 								<input type="hidden" id="product_id" name="product_id"
 									value="${product.product_id}"> 
@@ -78,7 +78,7 @@
 									name="product_price" readonly="readonly">
 								<div class="article-author-name pull-right">가격</div>
 								<div class="article-author-name pull-right">|</div>
-								<select name="order_quantity" id="buyCount" class="pull-right"
+								<select name="buyCount" id="buyCount" class="pull-right"
 									onchange="changeBuyCountSelect();">
 									<option value="1" selected="selected">1</option>
 									<option value="2">2</option>

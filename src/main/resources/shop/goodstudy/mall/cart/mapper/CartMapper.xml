@@ -6,7 +6,7 @@
 <mapper namespace="shop.goodstudy.mall.cart.mapper.CartMapper">
 
 	<insert id = "create" parameterType = "cart">
-		INSERT INTO cart(CUSTOMER_ID, PRODUCT_ID, RG_DATE, ORDER_QUANTITY, ORDER_TOTAL_PRICE) 
+		INSERT INTO cart(CUSTOMER_ID, PRODUCT_ID, RG_DATE, ORDER_QUANTITY, TOTAL_PRICE) 
 		VALUES (#{customer_id}, #{product_id}, NOW(), #{order_quantity},#{order_total_price})
 	</insert>
 

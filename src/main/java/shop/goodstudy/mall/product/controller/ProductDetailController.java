@@ -10,14 +10,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import shop.goodstudy.mall.product.model.Product;
-import shop.goodstudy.mall.product.service.ProductService;
 import shop.goodstudy.mall.common.CustomerSessionUtils;
 import shop.goodstudy.mall.common.DownLoadImageUtils;
+import shop.goodstudy.mall.product.model.Product;
+import shop.goodstudy.mall.product.service.ProductService;
 
 @Controller
 public class ProductDetailController {
@@ -109,7 +111,7 @@ public class ProductDetailController {
      */
     @PostMapping("/product/buy")
     public ModelAndView productBuyJsp(@ModelAttribute Product product, HttpServletRequest request) {
-    	long buyCount = Long.parseLong(request.getParameter("buyCount"));
+    	long buyCount = (request.getParameter("buyCount") == null) ? 0 : Long.parseLong(request.getParameter("buyCount"))  ;
     	String finalPrice = request.getParameter("hidden_finalPrice");
     	
         ModelAndView mav = new ModelAndView();

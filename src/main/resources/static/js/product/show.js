@@ -33,6 +33,7 @@ function buyProduct() {
 		form.method = "get";
 		form.action = "/customer/loginForm";
 	} else {
+		form.method = "post";
 		form.action = "/product/buy";
 	}
 	form.submit();
