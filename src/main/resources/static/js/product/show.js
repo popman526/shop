@@ -1,10 +1,14 @@
 function basket() {
 	
+	var total = parseInt($("#final_price").val());
+	
 	var cart = {
 			"customer_id": $("#customer_id").val(),
 			"product_id": $("#product_id").val(),
 			"order_quantity": $("#buyCount").val(),
-			"order_total_price": $("#product_price").val()
+			"product_name": $("#product_name").val(),
+			"product_price": $("#temp_product_price").val(),
+			"total_price": $("#product_price").val()
 	};
 	
 	$.ajax({

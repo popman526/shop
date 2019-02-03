@@ -11,6 +11,6 @@ import shop.goodstudy.mall.product.model.Product;
 public interface CartService {
 
 	boolean create(Cart c);
-	List<Product> getList(String id);
+	List<Cart> getList(String id);
 	
 }//end of CartService

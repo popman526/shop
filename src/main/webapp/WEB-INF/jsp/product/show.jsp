@@ -150,4 +150,7 @@
 <script src="/js/cookie.js"></script>
 <script src="/js/product/show.js"></script>
 <script src="/js/order/order.js"></script>
+<script>
+changeBuyCountSelect();
+</script>
 </html>

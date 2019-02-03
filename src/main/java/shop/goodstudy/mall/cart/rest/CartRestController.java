@@ -1,4 +1,4 @@
-package shop.goodstudy.mall.cart.restController;
+package shop.goodstudy.mall.cart.rest;
 
 import java.util.List;
 
@@ -23,12 +23,6 @@ public class CartRestController {
 	@PostMapping("cart")
 	public boolean postCart(@ModelAttribute Cart c) {
 		return cartService.create(c);
-	}
-	
-	/** 카트 리스트 가져오기 **/
-	@GetMapping("cart")
-	public List<Product> getCart(@SessionAttribute Customer customer){
-		return cartService.getList(customer.getCustomer_id());
 	}
 	
 }

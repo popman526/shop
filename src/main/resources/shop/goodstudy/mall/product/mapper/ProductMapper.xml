@@ -5,8 +5,6 @@
 
 <mapper namespace="shop.goodstudy.mall.product.mapper.ProductMapper">
 	
-	<resultMap type="customer" id="customer"></resultMap>
-
     <select id="selectProductByProductId" resultType="product">
         SELECT product_id
               ,product_name
@@ -71,11 +69,4 @@
         FROM product;
     </select>
     
-    <select id ="getCartList" parameterType = "String" resultType = "product">
-    	SELECT *
-    	FROM product, cart
-    	where product.PRODUCT_ID = cart.PRODUCT_ID
-    	AND cart.CUSTOMER_ID = #{customer_id}
-    </select>
-
 </mapper>

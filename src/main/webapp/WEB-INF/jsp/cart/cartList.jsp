@@ -23,39 +23,46 @@
 					<tr>
 						<th>상품</th>
 						<th>상품명 </th>
-						<th>주문일</th>
 						<th>수량</th>
-						<th>최총가격</th>
+						<th>최종가격</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="order" items="${orderList}">
-						<tr>
+					<c:forEach var="cart" items="${cart}">
+						<tr id = "${cart.cart_id}">
 							<td>
 								<div class="article-images">
 									<div class="main_img" title="메인이미지">
 										<a style="cursor: pointer;" class="btn-example"
-											href="/product/show?product_id=${order.product_id}"> 
-											<img src="/product/downloadThumbnail?product_id=${order.product_id}" class="main_img1"></a>
+											href="/product/show?product_id=${cart.product_id}"> 
+											<img src="/product/downloadThumbnail?product_id=${cart.product_id}" class="main_img1"></a>
 									</div>
 								</div>
 								<span></span>
 							</td>
 							<td>
-								${order.product_name}
+								${cart.product_name}
 							</td>
 							<td>
-								${order.order_date}
+								<input type = "hidden" id = "order_quantity" value = "${cart.order_quantity}">
+								<select name="order_quantity" id="buyCount" class="pull-right"
+									onchange="changePrice();">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+								</select>
 							</td>
 							<td>
-								${order.order_quantity}
-							</td>
-							<td>
-								<fmt:formatNumber value="${order.order_total_price}" pattern="#,###" />원
-							</td>
-							<td>
-								<button name="delete" class="btn btn-warning" onClick='fn_delete(${order.order_id})' >상품취소</button>
+								<input type = "hidden" id = "product_price" value = "${cart.product_price}">
+								<span id = "total_price">${cart.total_price}원</span>
 							</td>
 						</tr>	
 					</c:forEach>
@@ -68,9 +75,23 @@
 	</div>
 </div>    
 </form>
-<script>
-</script>
 <%@ include file="/WEB-INF/jsp/include/footer.jspf"%>
+<script>
+$(document).ready(function(){
+	
+	var ary = $("#buyCount").children();
+	for(var i = 0; i < ary.length; i++){
+		if(ary[i].value == $("#order_quantity").val()){
+			ary[i].selected = true;
+		}
+	}
+	
+	$("#buyCount").on('change',function(){
+		var totalPrice = $("#product_price").val() * $("#order_quantity").val();
+		$("#total_price").text(totalPrice + "원");
+	});
+	
+});
+</script>
 </body>
-<script src="/js/order/order.js"></script>
 </html>

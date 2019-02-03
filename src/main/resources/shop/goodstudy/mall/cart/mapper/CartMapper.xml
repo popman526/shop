@@ -6,8 +6,14 @@
 <mapper namespace="shop.goodstudy.mall.cart.mapper.CartMapper">
 
 	<insert id = "create" parameterType = "cart">
-		INSERT INTO cart(CUSTOMER_ID, PRODUCT_ID, RG_DATE, ORDER_QUANTITY, ORDER_TOTAL_PRICE) 
-		VALUES (#{customer_id}, #{product_id}, NOW(), #{order_quantity},#{order_total_price})
+		INSERT INTO cart(CUSTOMER_ID, PRODUCT_ID, RG_DATE, ORDER_QUANTITY, PRODUCT_PRICE, PRODUCT_NAME, TOTAL_PRICE) 
+		VALUES (#{customer_id}, #{product_id}, NOW(), #{order_quantity},#{product_price},#{product_name}, #{total_price})
 	</insert>
+	
+	<select id = "getList" parameterType = "String" resultType = "cart">
+		SELECT 
+		* FROM cart
+		WHERE CUSTOMER_ID = #{customer_id}
+	</select>
 
 </mapper>
