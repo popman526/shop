@@ -73,3 +73,4 @@ function setCouponValue(coupon_name, discount){
 	// 쿠폰삭제 버튼 display
     toggleCouponDelBtn();
 }
+

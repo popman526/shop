@@ -10,4 +10,5 @@ import shop.goodstudy.mall.order.model.CouponVO;
 public interface CouponMapper {
 	
 	public List<CouponVO> selectAllCoupon(String customer_id) throws Exception;
+	public int insertCoupon(CouponVO coupon);
 }

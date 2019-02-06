@@ -15,4 +15,8 @@
 		where customer_id = #{customer_id}
 	</select>
 
+	<insert id="insertCoupon" parameterType="coupon">
+		insert into mall.coupons ( coupon_name, customer_id, discount, discount_type, valid_date, status  ) 
+		values ( #{coupon_name}, #{customer_id}, #{discount}, #{discount_type}, DATE_FORMAT( date_add(now(), interval 1 month), '%Y%m%d' ), 'Y')
+	</insert>
 </mapper>
