@@ -13,10 +13,11 @@
 <body>
 <%@ include file="/WEB-INF/jsp/include/navigation.jspf" %>
 
-<form id="orderListForm" name="orderListForm" method="post">
 <div class="container" id="main">
    <div class="col-md-12 col-sm-12 col-lg-10 col-lg-offset-1">
       <div class="panel panel-default content-main">
+      <form id = "cartForm" action = "cart" method = "post">
+      		<input type = "hidden" id = "_method" name = "_method">
 			<h2> 장바구니 </h2>
 			<table class="table table-hover">
 				<thead>
@@ -64,17 +65,21 @@
 								<input type = "hidden" id = "product_price" value = "${cart.product_price}">
 								<span id = "total_price">${cart.total_price}원</span>
 							</td>
+							<td>
+								<input type = "checkbox" name = "product_id" value = "${cart.product_id}">
+							</td>
 						</tr>	
 					</c:forEach>
 				</tbody>
 			</table>
 			<div>
+				 <input type = "button" class = "btn btn-warning" id = "del" value = "장바구니 제거하기">
 		         <a href = "<c:url value='/'/>">홈 화면으로 돌아가기</a>
 		    </div>
+		    </form>
 		</div>
 	</div>
 </div>    
-</form>
 <%@ include file="/WEB-INF/jsp/include/footer.jspf"%>
 <script>
 $(document).ready(function(){
@@ -89,6 +94,13 @@ $(document).ready(function(){
 	$("#buyCount").on('change',function(){
 		var totalPrice = $("#product_price").val() * $("#order_quantity").val();
 		$("#total_price").text(totalPrice + "원");
+	});
+	
+	$("#del").on('click',function(){
+		
+		$("#_method").val("delete");
+		$("#cartForm").submit();
+		
 	});
 	
 });

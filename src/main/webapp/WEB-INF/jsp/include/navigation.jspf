@@ -53,7 +53,7 @@
         <c:when test="${not empty sessionScope.customer}">
         <li><a href="/users/logout" role="button">로그아웃</a></li>
         <li><a href="/users/updateForm?customer_id=${sessionScope.customer.customer_id}" role="button">개인정보수정</a></li>
-        <li><a href="/product/basket?customer_id=${sessionScope.customer.customer_id }" role="button">장바구니</a></li>
+        <li><a href="/cart" role="button">장바구니</a></li>
         </c:when>
         <c:otherwise>
         <li><a href="/customer/loginForm" role="button">로그인</a></li>

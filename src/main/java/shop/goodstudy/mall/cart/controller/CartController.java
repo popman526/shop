@@ -1,9 +1,13 @@
 package shop.goodstudy.mall.cart.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import shop.goodstudy.mall.cart.service.CartService;
@@ -20,6 +24,13 @@ public class CartController {
 		model.addAttribute("cart", cartService.getList(customer.getCustomer_id()));
 		return "/cart/cartList";
 		
+	}
+	
+	@DeleteMapping("cart")
+	public String deleteCart(Model model, @RequestParam("product_id") List<Long> products) {
+		System.out.println("size: " + products.size());
+		System.out.println("delete");
+		return "redirect:/cart";
 	}
 	
 }
