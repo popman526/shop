@@ -27,9 +27,9 @@ public class CartController {
 	}
 	
 	@DeleteMapping("cart")
-	public String deleteCart(Model model, @RequestParam("product_id") List<Long> products) {
-		System.out.println("size: " + products.size());
-		System.out.println("delete");
+	public String deleteCart(@SessionAttribute("customer") Customer customer
+			, @RequestParam("product_id") List<Long> products) {
+		cartService.delete(products, customer.getCustomer_id());
 		return "redirect:/cart";
 	}
 	

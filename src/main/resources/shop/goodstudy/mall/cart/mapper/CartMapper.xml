@@ -15,5 +15,9 @@
 		* FROM cart
 		WHERE CUSTOMER_ID = #{customer_id}
 	</select>
+	
+	<delete id = "delete" parameterType = "cart">
+		DELETE FROM cart WHERE CUSTOMER_ID = #{customer_id} AND PRODUCT_ID = #{product_id}
+	</delete>
 
 </mapper>

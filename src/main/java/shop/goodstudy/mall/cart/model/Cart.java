@@ -15,18 +15,18 @@ import lombok.ToString;
 @Alias("cart")
 public class Cart {
 
-	private int cart_id;
-	private int product_id;
+	private long cart_id;
+	private long product_id;
 	private String customer_id;
-	private int order_quantity;
-	private int product_price;
+	private long order_quantity;
+	private long product_price;
 	private String product_name;
-	private int total_price;
+	private long total_price;
 	private Date rg_date;
 	
 	@Builder
-	public Cart(int cart_id, int product_id, String customer_id, int order_quantity, int product_price,
-			String product_name, int total_price, Date rg_date) {
+	public Cart(long cart_id, long product_id, String customer_id, long order_quantity, long product_price,
+			String product_name, long total_price, Date rg_date) {
 		super();
 		this.cart_id = cart_id;
 		this.product_id = product_id;

@@ -21,5 +21,21 @@ public class CartServiceImpl implements CartService{
 	public List<Cart> getList(String id){
 		return cartMapper.getList(id);
 	}
+	
+	public boolean delete(List<Long> products, String id) {
+		
+		boolean result = false;
+		
+		for(int i = 0; i < products.size(); i++) {
+			result = cartMapper.delete(new Cart().builder()
+					.product_id(products.get(i))
+					.customer_id(id)
+					.build()) > 0;
+			if(!result) return false;
+		}
+		
+		return result;
+		
+	}
 
 }

@@ -11,5 +11,6 @@ public interface CartMapper {
 
 	int create(Cart c);
 	List<Cart> getList(String id);
+	int delete(Cart c);
 	
 }
