@@ -30,8 +30,8 @@ public class ProductServiceImpl implements ProductService {
 	 * 상품: 모든 상품 리스트 조회
 	 */
 	@Override
-	public List<Product> selectAllProduct(int startRow, int endRow) {
-		return productMapper.selectAllProduct(startRow, endRow);
+	public List<Product> selectAllProduct(int startRow) {
+		return productMapper.selectAllProduct(startRow);
 	}
 
 	/**
