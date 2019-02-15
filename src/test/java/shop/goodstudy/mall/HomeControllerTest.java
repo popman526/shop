@@ -32,14 +32,13 @@ public class HomeControllerTest {
 	@Test
 	public void homeTest() throws Exception {
 		int startRow = 0;
-		int endRow = 9;
 		List<Product> products = new ArrayList<>();
 		for (int i = 1; i <= 12; i++) {
 			products.add(new Product(i, "상품"+i, 0, 1000, 100, "등록자"+i));
 		}
 		
 		when(mockProductService.getProductCount()).thenReturn(12);
-		when(mockProductService.selectAllProduct(startRow, endRow)).thenReturn(products);
+		when(mockProductService.selectAllProduct(startRow)).thenReturn(products);
 		
 		mockMvc.perform(get("/"))
 			.andExpect(status().isOk())

@@ -15,12 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 import net.coobird.thumbnailator.Thumbnails;
 import shop.goodstudy.mall.image.mapper.ImageMapper;
 import shop.goodstudy.mall.image.model.Thumbnail;
+import shop.goodstudy.mall.image.service.ImageService;
+import shop.goodstudy.mall.order.mapper.CouponMapper;
 import shop.goodstudy.mall.order.mapper.OrderMapper;
+import shop.goodstudy.mall.order.model.CouponVO;
 import shop.goodstudy.mall.order.model.OrderDetailVO;
 import shop.goodstudy.mall.order.model.OrderVO;
 import shop.goodstudy.mall.order.service.OrderService;
-
-import shop.goodstudy.mall.image.service.ImageService;
 
 @Service
 @Transactional
@@ -28,6 +29,9 @@ public class OrderServiceImpl implements OrderService {
 
 	@Autowired
 	OrderMapper orderMapper;
+	@Autowired
+	CouponMapper couponMapper;
+	
 	@Autowired
 	private ImageMapper imageMapper;
 	@Autowired
@@ -94,5 +98,9 @@ public class OrderServiceImpl implements OrderService {
 		rv = orderMapper.deleteOrder(order_id);
 		rv = orderMapper.deleteOrderDetail(order_id);
 		return rv;
+	}
+	
+	public int insertCoupon(CouponVO coupon) throws Exception {
+		return couponMapper.insertCoupon(coupon);
 	}
 }

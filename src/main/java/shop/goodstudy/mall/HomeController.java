@@ -28,7 +28,6 @@ public class HomeController {
 	public ModelAndView home(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		PagingUtils pagingUtils = new PagingUtils(); // 메인 화면 페이징을 위한 유틸 불러오기
-		String pageCode; // 페이징 처리 결과(StringBuilder 저장)
 		int count = 0;
 		List<Product> products;
 		
@@ -43,18 +42,19 @@ public class HomeController {
 		int pageBlock = 10; //TODO: 외부 설정으로 빼기. 한 블럭에 보여줄 페이지 갯수
 		
 		pagingUtils.paging(Integer.parseInt(pageNum), count, pageSize, pageBlock);
-		pageCode = pagingUtils.getSb().toString();
 		
-		System.out.println(pagingUtils.getStartRow());
 		if (count > 0) { 
-			products = productService.selectAllProduct(pagingUtils.getStartRow(), pagingUtils.getEndRow()); // 현재 페이지에 해당하는 글 목록 가져오기
+			products = productService.selectAllProduct(pagingUtils.getStartRow()); // 현재 페이지에 해당하는 글 목록 가져오기
 		} else {
 			products = null;
 		}
 		
 		mav.addObject("count", count);
 		mav.addObject("pageNum", pageNum);
-		mav.addObject("pageCode", pageCode);
+		mav.addObject("pageBlock", pageBlock);
+		mav.addObject("startPage", pagingUtils.getStartPage());
+		mav.addObject("endPage", pagingUtils.getEndPage());
+		mav.addObject("totalPage", pagingUtils.getTotalPage());
 		mav.addObject("products", products);
 		mav.setViewName("home");
 		return mav;

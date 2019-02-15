@@ -41,7 +41,7 @@ img.main_img {
 							<div class="article-author-name">상품명: ${product.product_name }</div>
 							<div class="article-author-name">구매수량: ${buyCount }</div>
 							<div class="article-author-name">총가격: ${product.product_price }</div>
-							<div class="article-author-name">최종가: ${finalPrice }</div>
+							<div class="article-author-name">최종가(쿠폰적용): ${finalPrice }</div>
 							<input type="hidden" name="order_quantity" value="${buyCount }"/>
 							<input type="hidden" name="product_id" value="${product.product_id }"/>
 							<input type="hidden" name="product_name" value="${product.product_name }"/>
@@ -92,7 +92,8 @@ img.main_img {
 	
 	$(".pay").on('click',function(){
 		
-		var price = $("#product_price").val();
+		//var price = $("#product_price").val();
+		var price = $("#finalPrice").val();
 		
 		IMP.request_pay({
 		    pg : 'kakaopay',

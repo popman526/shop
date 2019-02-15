@@ -15,6 +15,7 @@ import shop.goodstudy.mall.common.CustomerSessionUtils;
 import shop.goodstudy.mall.customer.model.Customer;
 import shop.goodstudy.mall.order.mapper.CouponMapper;
 import shop.goodstudy.mall.order.model.CouponVO;
+import shop.goodstudy.mall.order.model.OrderVO;
 
 @Controller
 @RequestMapping("/coupon/*")
@@ -53,6 +54,45 @@ public class CouponController {
 		ModelAndView returnPage = new ModelAndView("/order/couponPopup");
 		returnPage.addObject("couponList", couponList);
 		return returnPage;
+    }
+    
+    // 쿠폰존 ( 쿠폰 free download 장소 )
+    @RequestMapping(value = "/couponZone", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView couponZone(HttpServletRequest request, Model model) throws Exception {
+    	
+		ModelAndView returnPage = new ModelAndView("/order/couponZone");
+		//returnPage.addObject("couponList", couponList);
+		return returnPage;
+    }
+    
+    // 쿠폰 다운로드
+    @RequestMapping(value = "/getCoupon", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView getCoupon(HttpServletRequest request, Model model) throws Exception {
+    	if (!CustomerSessionUtils.isLogined(request.getSession())) {
+            return new ModelAndView("/customer/loginForm");
+        }
+    	
+    	int coupon_id = ( request.getParameter("coupon_id") == null ) ? 0 : Integer.parseInt(request.getParameter("coupon_id")) ;
+    	String coupon_type = ( request.getParameter("coupon_type") == null ) ? "P" : request.getParameter("coupon_type");
+    	
+    	CouponVO couponVO = new CouponVO();
+    	
+    	Customer customer = CustomerSessionUtils.getCustomerFromSession(request.getSession());
+    	couponVO.setCoupon_name("할인쿠폰");
+    	couponVO.setCustomer_id(customer.getCustomer_id());
+    	couponVO.setDiscount(coupon_id); 
+    	couponVO.setDiscount_type(coupon_type);
+    	
+    	int result = couponMapper.insertCoupon(couponVO);
+    	
+    	ModelAndView returnPage = new ModelAndView("/order/couponZone");
+    	if( result > 0 ) {
+    		returnPage.addObject("result", "쿠폰을 성공적으로 다운로드 받았습니다.");
+    	} else {
+    		returnPage.addObject("result", "쿠폰을 다운로드 받지 못했습니다.");
+    	}
+		return returnPage;
+		//return "redirect:/order/couponZone";
     }
 
 

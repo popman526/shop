@@ -48,7 +48,34 @@
 					<div class="col-md-3"></div>
 					<div class="col-md-6 text-center">
 						<ul class="pagination center-block" style="display: inline-block;">
-							<li>${pageCode }</li>
+							<c:choose>
+								<c:when test="${startPage < pageBlock }">
+									<li><img src="/images/beforePage.png" width="35"></li>
+								</c:when>
+								<c:otherwise>
+									<li><img src="/images/beforePage.png" width="35"
+									 onclick="location.href=?pageNum=${startPage - pageBlock }" style="cursor:pointer"> </li>
+								</c:otherwise>
+							</c:choose>
+							<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+								<c:choose>
+									<c:when test="${i == pageNum }">
+										&nbsp;&nbsp;<b><font color="#91B7EF">${i }</font></b>
+									</c:when>
+									<c:otherwise>
+										&nbsp;&nbsp;<a href="/?pageNum=${i }">${i }</a>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<c:choose>
+								<c:when test="${endPage < totalPage }">
+									<li><img src="/images/afterPage.png"  width="35"
+									 onclick="location.href=?pageNum=${startPage + pageBlock }" style="cursor:pointer"> </li>
+								</c:when>
+								<c:otherwise>
+									<li><img src="/images/afterPage.png"  width="35"></li>
+								</c:otherwise>
+							</c:choose>
 						</ul>
 					</div>
 					<div class="col-md-3 qna-write">
