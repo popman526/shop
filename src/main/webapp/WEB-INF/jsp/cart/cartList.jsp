@@ -31,8 +31,8 @@
 				</thead>
 				<tbody>
 					<c:forEach var="cart" items="${cart}">
-						<tr id = "${cart.cart_id}">
-							<td>
+						<tr>
+							<td class = "img">
 								<div class="article-images">
 									<div class="main_img" title="메인이미지">
 										<a style="cursor: pointer;" class="btn-example"
@@ -42,13 +42,15 @@
 								</div>
 								<span></span>
 							</td>
-							<td>
+							<td class = "name">
 								${cart.product_name}
 							</td>
-							<td>
-								<input type = "hidden" id = "order_quantity" value = "${cart.order_quantity}">
-								<select name="order_quantity" id="buyCount" class="pull-right"
-									onchange="changePrice();">
+							<td class = "buyCount">
+								<input type = "hidden" class = "order_quantity" value = "${cart.order_quantity}">
+								<div class = "loading">
+									<img src = "/images/loading.gif">
+								</div>
+								<select name="order_quantity" class="buyCount" class="pull-right">
 									<option value="1">1</option>
 									<option value="2">2</option>
 									<option value="3">3</option>
@@ -61,12 +63,12 @@
 									<option value="10">10</option>
 								</select>
 							</td>
-							<td>
-								<input type = "hidden" id = "product_price" value = "${cart.product_price}">
+							<td class = "price">
+								<input type = "hidden" class = "product_price" value = "${cart.product_price}">
 								<span id = "total_price">${cart.total_price}원</span>
 							</td>
-							<td>
-								<input type = "checkbox" name = "product_id" value = "${cart.product_id}">
+							<td class = "id">
+								<input type = "checkbox" name = "product_id" class = "product_id" value = "${cart.product_id}">
 							</td>
 						</tr>	
 					</c:forEach>
@@ -82,20 +84,53 @@
 </div>    
 <%@ include file="/WEB-INF/jsp/include/footer.jspf"%>
 <script>
-$(document).ready(function(){
-	
-	var ary = $("#buyCount").children();
+
+function findData(){
+	var ary = $(".buyCount").children();
 	for(var i = 0; i < ary.length; i++){
-		if(ary[i].value == $("#order_quantity").val()){
+		if(ary[i].value == $(".order_quantity").val()){
 			ary[i].selected = true;
 		}
 	}
+}
+
+$(document).ready(function(){
 	
-	$("#buyCount").on('change',function(){
-		var totalPrice = $("#product_price").val() * $("#order_quantity").val();
-		$("#total_price").text(totalPrice + "원");
+	$(".loading").hide();
+	
+	//체크박스에서 저장된 값 찾기
+	findData();
+	
+	//변경 시 TotalPrice 찾기
+	$(".buyCount").on('change',function(){
+		
+		var parent = $(this).parent().parent();
+		console.log(parent.prop('tagName'));
+		console.log(parent.children('.id').children('.product_id').val());
+		
+		var order_quantity = {
+				'buyCount': $(this).val(),
+				'product_id': parent.children('.product_id').val()
+		};
+		
+		$.ajax({
+			type:"put",
+			url:"cart",
+			data:order_quantity,
+			success: function(data){
+				var totalPrice = $("#product_price").val() * $("#buyCount").val();
+				$("#total_price").text(totalPrice + "원");
+				$("#order_quantity").val($("#buyCount").val());
+			},
+			error: function(data){
+				findData();
+			}
+			
+		});
+		
 	});
 	
+	//delete method로 삭제 전송하기
 	$("#del").on('click',function(){
 		
 		$("#_method").val("delete");
@@ -104,6 +139,7 @@ $(document).ready(function(){
 	});
 	
 });
+
 </script>
 </body>
 </html>
