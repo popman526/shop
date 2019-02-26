@@ -30,8 +30,8 @@ public class ProductServiceImpl implements ProductService {
 	 * 상품: 모든 상품 리스트 조회
 	 */
 	@Override
-	public List<Product> selectAllProduct(int startRow) {
-		return productMapper.selectAllProduct(startRow);
+	public List<Product> selectAllProduct(int startRow, String srchTerm) {
+		return productMapper.selectAllProduct(startRow, srchTerm);
 	}
 
 	/**
@@ -60,10 +60,8 @@ public class ProductServiceImpl implements ProductService {
 			MultipartFile mFile = it.next();
 			String image_name = mFile.getOriginalFilename();
 			String physical_name = image_name + "_" + System.currentTimeMillis();
-			byte[] imagefile = null;
 			Image image = new Image();
-			imagefile = new byte[(int) mFile.getSize()];
-			imagefile = mFile.getBytes();
+			byte[] imagefile = mFile.getBytes();
 			image.setImage_name(image_name);
 			image.setImagefile(imagefile);
 			image.setPhysical_name(physical_name);
@@ -86,9 +84,7 @@ public class ProductServiceImpl implements ProductService {
 				MultipartFile mFile = it.next();
 				String image_name = mFile.getOriginalFilename();
 				String physical_name = image_name + "_" + System.currentTimeMillis();
-				byte[] imagefile = null;
-				imagefile = new byte[(int) mFile.getSize()];
-				imagefile = mFile.getBytes();
+				byte[] imagefile = mFile.getBytes();
 				Image image = new Image();
 				image.setImage_name(image_name);
 				image.setImagefile(imagefile);
@@ -115,8 +111,8 @@ public class ProductServiceImpl implements ProductService {
 	 * 상품: 전체 상품 등록 개수 불러오기(페이징 처리 위함)
 	 */
 	@Override
-	public int getProductCount() {
-		return productMapper.getProductCount();
+	public int getProductCount(String srchTerm) {
+		return productMapper.getProductCount(srchTerm);
 	}
 	
 }

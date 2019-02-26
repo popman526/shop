@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import shop.goodstudy.mall.common.CustomerSessionUtils;
+import shop.goodstudy.mall.common.PagingUtils;
 import shop.goodstudy.mall.customer.model.Customer;
 import shop.goodstudy.mall.product.model.Product;
 import shop.goodstudy.mall.product.service.ProductService;
@@ -58,4 +60,24 @@ public class ProductListController {
         return "redirect:/";
 	}
     
+    @PostMapping("/product/getSearchResult")
+    public ModelAndView getSearchResult(HttpServletRequest request) {
+    	String srchTerm = request.getParameter("srch-term");
+    	
+    	PagingUtils pagingUtils = new PagingUtils() {
+			
+			@Override
+			public List<Product> selectAllProduct(int startRow, String srchTerm) {
+				return productService.selectAllProduct(startRow, srchTerm);
+			}
+			
+			@Override
+			public int getProductCount(String srchTerm) {
+				return productService.getProductCount(srchTerm);
+			}
+		};
+		ModelAndView mav = pagingUtils.getPagingMav(request.getParameter("pageNum"), srchTerm);
+		mav.setViewName("home");
+    	return mav;
+    }
 }

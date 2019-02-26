@@ -8,10 +8,10 @@ import shop.goodstudy.mall.product.model.Product;
 
 @Mapper
 public interface ProductMapper {
-	List<Product> selectAllProduct(int startRow); // 전체 상품 리스트 조회
+	List<Product> selectAllProduct(int startRow, String srchTerm); // 전체 상품 리스트 조회
 	Product selectProductByProductId(Long product_id); // 상품 클릭 시 상품 정보 조회
 	int insertProduct(Product product); // 상품 글쓰기
 	int deleteProductByProductId(Long product_id); // 상품 삭제
 	int updateProductByProduct(Product product); // 상품 업데이트
-	int getProductCount(); // 상품 전체 개수 가져오기(페이징 처리 위함)
+	int getProductCount(String srchTerm); // 상품 전체 개수 가져오기(페이징 처리 위함)
 }

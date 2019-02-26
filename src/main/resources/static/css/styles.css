@@ -48,6 +48,11 @@ body {
 	background-color: #ffffff;
 }
 
+.header .navbar-collapse .navbar-form .input-group label {
+    float: left;
+    margin: 8px 5px 0 0;
+}
+
 .btn, .form-control, .panel, .list-group, .well {
 	border-radius: 1px;
 	box-shadow: 0 0 0;
