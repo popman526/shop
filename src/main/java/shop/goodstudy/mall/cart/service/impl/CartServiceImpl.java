@@ -38,4 +38,15 @@ public class CartServiceImpl implements CartService{
 		
 	}
 
+	@Override
+	public boolean updateCount(int count, long pid, String cid) {
+		return cartMapper.updateCount(new Cart().builder()
+				.product_id(pid)
+				.customer_id(cid)
+				.order_quantity(count)
+				.build()) > 0;
+	}
+	
+	
+
 }
