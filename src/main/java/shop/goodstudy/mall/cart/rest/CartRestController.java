@@ -27,9 +27,7 @@ public class CartRestController {
 	@PutMapping("cart")
 	public boolean putCart(@RequestParam int buyCount, @RequestParam long product_id
 			,@SessionAttribute Customer customer) {
-		System.out.println("count: " + buyCount);
-		System.out.println("id: " + product_id);
-		return true;
+		return cartService.updateCount(buyCount, product_id, customer.getCustomer_id());
 	}
 	
 }

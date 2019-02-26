@@ -4,7 +4,6 @@
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<link rel="stylesheet" type="text/css" href="/css/order_style.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--  link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"-->
 <head>
@@ -45,7 +44,7 @@
 							<td class = "name">
 								${cart.product_name}
 							</td>
-							<td class = "buyCount">
+							<td class = "count">
 								<input type = "hidden" class = "order_quantity" value = "${cart.order_quantity}">
 								<div class = "loading">
 									<img src = "/images/loading.gif">
@@ -85,13 +84,11 @@
 <%@ include file="/WEB-INF/jsp/include/footer.jspf"%>
 <script>
 
-function findData(){
-	var ary = $(".buyCount").children();
-	for(var i = 0; i < ary.length; i++){
-		if(ary[i].value == $(".order_quantity").val()){
-			ary[i].selected = true;
-		}
-	}
+function checkData(element){
+	
+	element.getElementsByClassName("buyCount")[0].value 
+	= element.getElementsByClassName("order_quantity")[0].value;
+	
 }
 
 $(document).ready(function(){
@@ -99,34 +96,34 @@ $(document).ready(function(){
 	$(".loading").hide();
 	
 	//체크박스에서 저장된 값 찾기
-	findData();
+	for(var i = 0; i < $('tbody').children().length; i++){
+		checkData($('tbody').children()[i]);
+	}
 	
 	//변경 시 TotalPrice 찾기
 	$(".buyCount").on('change',function(){
 		
 		var parent = $(this).parent().parent();
-		console.log(parent.prop('tagName'));
-		console.log(parent.children('.id').children('.product_id').val());
+		var count = $(this).val();
 		
 		var order_quantity = {
-				'buyCount': $(this).val(),
-				'product_id': parent.children('.product_id').val()
+				'buyCount': count,
+				'product_id': parent.children('.id').children('.product_id').val()
 		};
 		
-		$.ajax({
-			type:"put",
-			url:"cart",
+ 		$.ajax({
+			type:'put',
+			url:'cart',
 			data:order_quantity,
 			success: function(data){
-				var totalPrice = $("#product_price").val() * $("#buyCount").val();
-				$("#total_price").text(totalPrice + "원");
-				$("#order_quantity").val($("#buyCount").val());
+				parent.children('.count').children('.order_quantity').val(count + '');
 			},
 			error: function(data){
-				findData();
+				alert('정보 수정에 실패했습니다.');
+				checkData(parent[0]);
 			}
 			
-		});
+		}); 
 		
 	});
 	

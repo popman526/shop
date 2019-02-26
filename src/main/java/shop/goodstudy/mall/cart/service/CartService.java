@@ -12,5 +12,6 @@ public interface CartService {
 	boolean create(Cart c);
 	List<Cart> getList(String id);
 	boolean delete(List<Long> products, String id);
+	boolean updateCount(int count, long pid, String cid);
 	
 }//end of CartService
