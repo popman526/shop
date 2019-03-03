@@ -15,6 +15,10 @@
 		<div class="col-md-12 col-sm-12 col-lg-10 col-lg-offset-1">
 			<div class="panel panel-default qna-list">
 			<br> <b>(전체 글:${count})</b>
+			<div class="col-md-3 qna-write" style="float: right; padding-top: 0em">
+				<a href="/product/form" class="btn btn-primary pull-right"
+					role="button">상품등록</a>
+			</div>
 				<ul class="list">
 					<c:if test="${count == 0 }">
 						<li>

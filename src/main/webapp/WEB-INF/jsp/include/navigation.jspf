@@ -67,8 +67,3 @@
 </div>
 
 <script src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
-<script>
-$( "#srch-term" ).change(function() {
-  alert( $("#srch-term").val() );
-});
-</script>

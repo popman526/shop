@@ -26,7 +26,7 @@
               ,reg_dt
           FROM product
           <if test="srchTerm!=null and !srchTerm.equals('')">
-			WHERE product_name like '%${srchTerm}%'
+			WHERE match(product_name) against(#{srchTerm} in boolean mode)
 		  </if>
           ORDER BY product_id desc
           LIMIT #{startRow}, 10
@@ -71,7 +71,7 @@
       SELECT count(*)
         FROM product
         <if test="value!=null and !value.equals('')">
-			WHERE product_name like '%${value}%'
+			WHERE match(product_name) against(#{srchTerm} in boolean mode)
 		</if>
     </select>
     
