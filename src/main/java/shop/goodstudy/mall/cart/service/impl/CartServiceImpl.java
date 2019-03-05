@@ -14,8 +14,8 @@ public class CartServiceImpl implements CartService{
 
 	@Autowired private CartMapper cartMapper;
 	
-	public boolean create(Cart c) {
-		return cartMapper.create(c) > 0 ? true: false;
+	public int create(Cart c) {
+		return cartMapper.create(c);
 	}
 		
 	public List<Cart> getList(String id){
@@ -46,7 +46,13 @@ public class CartServiceImpl implements CartService{
 				.order_quantity(count)
 				.build()) > 0;
 	}
-	
-	
 
+	@Override
+	public boolean checkExist(long pid, String cid) {
+		return cartMapper.checkExist(new Cart().builder()
+				.product_id(pid)
+				.customer_id(cid)
+				.build()) > 0;
+	}
+	
 }
