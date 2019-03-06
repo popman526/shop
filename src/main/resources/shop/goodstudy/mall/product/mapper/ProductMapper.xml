@@ -75,4 +75,16 @@
 		</if>
     </select>
     
+    <select id="selectHomeSlider" resultType="product">
+        SELECT product_id
+              ,product_name
+              ,product_state
+              ,product_price
+              ,reg_id
+              ,reg_dt
+          FROM product
+          ORDER BY product_id desc
+          LIMIT 5
+    </select>
+    
 </mapper>

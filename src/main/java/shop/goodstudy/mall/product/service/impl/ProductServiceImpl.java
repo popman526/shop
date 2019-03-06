@@ -115,4 +115,12 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.getProductCount(srchTerm);
 	}
 	
+	/**
+	 * 상품: Home 화면 Image Slider용
+	 */
+	@Override
+	public List<Product> selectHomeSlider() {
+		return productMapper.selectHomeSlider();
+	}
+	
 }

@@ -15,4 +15,5 @@ public interface ProductService {
 	void updateProductByProduct(Product product, List<MultipartFile> filelist) throws IOException; // 상품 수정하기(상품, 이미지)
 	void deleteProductByProductId(Long product_id); // 상품 삭제하기(상품, 이미지)
 	int getProductCount(String srchTerm); // 전체 상품 갯수 가져오기(페이징 처리 위함)
+	List<Product> selectHomeSlider(); //Home 화면 Image Slider용
 }
