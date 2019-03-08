@@ -12,13 +12,16 @@
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse1">
       <form class="navbar-form pull-left" action="/product/getSearchResult" method="post">
-        <div class="input-group" style="max-width:470px;">
-          <label for="srch-term">상품검색</label><input type="text" class="form-control" placeholder="원하시는 상품을 입력하세요." name="srch-term" id="srch-term" style="width: 300px">
-          <div class="input-group-btn">
-            <button class="btn btn-default btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-          </div>
-        </div>
-      </form>
+	      <div class="input-group" style="max-width:470px;">
+	        <input type="text" class="form-control" placeholder="원하시는 상품을 입력하세요." name="srch-term" id="srch-term" style="width: 300px">
+	        <div class="input-group-btn">
+	          <button class="btn btn-default btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+	        </div>
+	      </div>
+	      <!-- <div class="ui-widget" style="margin-top:-1px; font-family:Arial">
+			 <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
+		  </div> -->
+	    </form>
       <ul class="nav navbar-nav navbar-right">
         <li>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-bell"></i></a>
@@ -66,4 +69,43 @@
   </div>
 </div>
 
-<script src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
+<!-- <script src="/webjars/jquery/3.3.1-1/jquery.min.js"></script> -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$( function() {
+// 	    function log( message ) {
+// 	      $( "<div>" ).text( message ).prependTo( "#log" );
+// 	      $( "#log" ).scrollTop( 0 );
+// 	    }
+	 
+	    $( "#srch-term" ).autocomplete({
+	      source: function( request, response ) {
+	        $.ajax( {
+	          url: "/product/search/auto",
+	          dataType: "json",
+	          data: {
+	            srchTerm: request.term
+	          },
+	          success: function( data ) {
+	        	response($.map(data, function(v,i){
+	        		return {
+	        			label: decodeURIComponent(v.product_name.replace(/\+/g, " ")),
+	        			value: decodeURIComponent(v.product_name.replace(/\+/g, " "))
+        			};
+       			}));
+	          }
+	        } );
+	      },
+	      minLength: 1,
+	      delay: 300,
+	      focus: function( event, ui ) {
+	    	return false;
+	      },
+// 	      select: function( event, ui ) {
+// 	        log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+// 	      }
+	    } );
+	} );
+</script>

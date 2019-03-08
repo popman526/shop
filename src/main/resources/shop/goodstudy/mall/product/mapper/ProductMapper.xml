@@ -87,4 +87,10 @@
           LIMIT 5
     </select>
     
+    <select id="getProductsBySrchTerm" resultType="product" parameterType="string">
+        SELECT product_id
+              ,product_name
+          FROM product
+         WHERE product_name like '%${value}%'
+    </select>
 </mapper>

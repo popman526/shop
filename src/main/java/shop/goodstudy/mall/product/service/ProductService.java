@@ -1,6 +1,7 @@
 package shop.goodstudy.mall.product.service;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -16,4 +17,6 @@ public interface ProductService {
 	void deleteProductByProductId(Long product_id); // 상품 삭제하기(상품, 이미지)
 	int getProductCount(String srchTerm); // 전체 상품 갯수 가져오기(페이징 처리 위함)
 	List<Product> selectHomeSlider(); //Home 화면 Image Slider용
+	String getProductsBySrchTerm(String srchTerm) throws UnsupportedEncodingException; // 상품 검색 자동완성을 위함
+	ModelAndView getSearchResult(String srchTerm, String pageNum); // 상품 검색 기능
 }

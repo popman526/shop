@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import shop.goodstudy.mall.common.CustomerSessionUtils;
-import shop.goodstudy.mall.common.PagingUtils;
 import shop.goodstudy.mall.customer.model.Customer;
 import shop.goodstudy.mall.product.model.Product;
 import shop.goodstudy.mall.product.service.ProductService;
@@ -74,38 +74,22 @@ public class ProductListController {
     @PostMapping("/product/getSearchResult")
     public ModelAndView getSearchResult(HttpServletRequest request) {
     	String srchTerm = request.getParameter("srch-term");
-    	StringBuilder matchSrchTerm = new StringBuilder();
-    	String asterisk = "*";
-    	String doubleQuote = "\"";
-    	
-    	if (srchTerm.indexOf(doubleQuote) != -1) { // 검색어에 쌍따옴표가 있는 경우(문장 검색 모드)
-    		int lastIndexDQ = srchTerm.lastIndexOf(doubleQuote);
-    		if (lastIndexDQ == srchTerm.length()-1) { // 검색어에 예외 단어가 없는 경우
-    			matchSrchTerm.append(srchTerm).append(asterisk);
-    		} else {
-    			matchSrchTerm.append(srchTerm.substring(0, lastIndexDQ+1)).append(asterisk).append(srchTerm.substring(lastIndexDQ+1));
-    		}
-    	} else { // 검색어에 쌍따옴표가 없는 경우(단어 검색 모드)
-    		String[] srchTerms = srchTerm.split(" ");
-    		for (String srchWord : srchTerms) {
-    			matchSrchTerm.append(srchWord).append(asterisk);
-    		}
-    	}
-    	
-    	PagingUtils pagingUtils = new PagingUtils() {
-			
-			@Override
-			public List<Product> selectAllProduct(int startRow, String srchTerm) {
-				return productService.selectAllProduct(startRow, srchTerm);
-			}
-			
-			@Override
-			public int getProductCount(String srchTerm) {
-				return productService.getProductCount(srchTerm);
-			}
-		};
-		ModelAndView mav = pagingUtils.getPagingMav(request.getParameter("pageNum"), matchSrchTerm.toString());
-		mav.setViewName("home");
+    	String pageNum = request.getParameter("pageNum");
+    	ModelAndView mav = productService.getSearchResult(srchTerm, pageNum);
     	return mav;
     }
+    
+    /**
+     * 상품 검색 자동완성 기능(ajax)
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException 
+     */
+    @GetMapping("/product/search/auto")
+	public void productSearchAutocomplete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    	String srchTerm = request.getParameter("srchTerm");
+		String json = productService.getProductsBySrchTerm(srchTerm);
+		response.getWriter().write(json);
+	}
 }
