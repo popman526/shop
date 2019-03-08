@@ -13,5 +13,6 @@ public interface CartMapper {
 	List<Cart> getList(String id);
 	int delete(Cart c);
 	int updateCount(Cart c);
+	int checkExist(Cart c);
 	
 }

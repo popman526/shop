@@ -21,6 +21,9 @@ public class CartTest {
 	@Test
 	public void create() {
 		
+		assertThat(cartMapper.checkExist(Cart.builder().customer_id("spring03")
+				.product_id(24).build()),is(1));
+		
 	}
 	
 }

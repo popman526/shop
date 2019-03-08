@@ -24,5 +24,12 @@
 		UPDATE cart SET ORDER_QUANTITY = #{order_quantity}, TOTAL_PRICE = #{order_quantity} * PRODUCT_PRICE
 		WHERE CUSTOMER_ID = #{customer_id} AND PRODUCT_ID = #{product_id} 
 	</update>
+	
+	<select id = "checkExist" parameterType="cart" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM cart
+		WHERE CUSTOMER_ID = #{customer_id} AND PRODUCT_ID = #{product_id}
+	</select>
 
 </mapper>

@@ -20,8 +20,12 @@ function basket() {
             alert('장바구니 담기에 실패했습니다.');
         },
         success: function(data){
-        	if(data == true){
+        	if(data == -1){
         		$("#cartModal").modal();
+        	}else if(data == 1){
+        		alert('이미 장바구니에 있는 상품입니다.');
+        	}else if(data == 0){
+        		alert('장바구니 담기에 실패했습니다.');
         	}
         }
         

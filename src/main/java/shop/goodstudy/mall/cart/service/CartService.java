@@ -9,9 +9,10 @@ import shop.goodstudy.mall.cart.model.Cart;
 @Transactional
 public interface CartService {
 
-	boolean create(Cart c);
+	int create(Cart c);
 	List<Cart> getList(String id);
 	boolean delete(List<Long> products, String id);
 	boolean updateCount(int count, long pid, String cid);
+	boolean checkExist(long pid, String cid);
 	
 }//end of CartService
