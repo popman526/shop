@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import net.coobird.thumbnailator.Thumbnails;
+import shop.goodstudy.mall.cart.mapper.CartMapper;
 import shop.goodstudy.mall.image.mapper.ImageMapper;
 import shop.goodstudy.mall.image.model.Thumbnail;
 import shop.goodstudy.mall.image.service.ImageService;
@@ -36,6 +38,7 @@ public class OrderServiceImpl implements OrderService {
 	private ImageMapper imageMapper;
 	@Autowired
 	private ImageService imageService;
+	@Autowired CartMapper cartMapper;
 	
 	public int insertOrder(OrderVO order) throws Exception {
 		return orderMapper.insertOrder(order);
@@ -103,4 +106,23 @@ public class OrderServiceImpl implements OrderService {
 	public int insertCoupon(CouponVO coupon) throws Exception {
 		return couponMapper.insertCoupon(coupon);
 	}
+	
+	public boolean addOrder(OrderVO order, List<OrderDetailVO> list) throws Exception{
+		
+		boolean result = orderMapper.insertOrder(order) > 0;
+		result = orderMapper.insertOrderDetails(list) == list.size();
+		
+		return result;
+		
+	}
+	
+	public boolean insertCartOrder(OrderVO order, List<Long> list) throws Exception {
+		
+		boolean result = orderMapper.insertOrder(order) > 0;
+		orderMapper.insertCartOrder(list);
+		cartMapper.deleteOrdered(list);
+		return result;
+		
+	}
+	
 }

@@ -31,5 +31,21 @@
 		FROM cart
 		WHERE CUSTOMER_ID = #{customer_id} AND PRODUCT_ID = #{product_id}
 	</select>
+	
+	<update id="updateChecked" parameterType="cart">
+		UPDATE cart SET CHECKED = 1
+		WHERE CUSTOMER_ID = #{customer_id} AND PRODUCT_ID = #{product_id} 
+	</update>
+	
+	<select id="getChecked" parameterType="String" resultType="cart">
+		SELECT * FROM cart WHERE CUSTOMER_ID = #{customer_id} AND CHECKED = 1
+	</select> 
+
+	<delete id="deleteOrdered" parameterType="java.util.List">
+		DELETE FROM cart 
+		<foreach collection="list" item="cart_id">
+		WHERE CART_ID = #{cart_id}
+		</foreach>
+	</delete>
 
 </mapper>

@@ -1,5 +1,7 @@
 package shop.goodstudy.mall.order.service;
 
+import java.util.List;
+
 import shop.goodstudy.mall.order.model.CouponVO;
 import shop.goodstudy.mall.order.model.OrderDetailVO;
 import shop.goodstudy.mall.order.model.OrderVO;
@@ -12,6 +14,6 @@ public interface OrderService {
 	public int deleteOrderAndDetail(int order_id) throws Exception;
 	public int insertOrderDetail(OrderDetailVO order) throws Exception;
 	public int insertOrderAndDetail( OrderVO order, OrderDetailVO orderDetail) throws Exception;
-	
+	public boolean insertCartOrder(OrderVO order, List<Long> list) throws Exception;
 	public int insertCoupon(CouponVO coupon) throws Exception;
 }

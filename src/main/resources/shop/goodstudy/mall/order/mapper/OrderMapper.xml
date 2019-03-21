@@ -4,6 +4,8 @@
 
 <mapper namespace="shop.goodstudy.mall.order.mapper.OrderMapper">
 
+	<resultMap type="cart" id="cart"/>
+
 	<insert id="insertOrder"
 		parameterType="order">
 		insert into mall.orders ( customer_code, order_date, order_total_price, order_state )
@@ -42,5 +44,13 @@
 		delete from mall.order_detail where order_id = #{order_id}
 	</delete>
 	
+	<insert id="insertCartOrder" parameterType="java.util.List">
+		insert into order_detail ( order_id, product_id, product_price, order_quantity, product_name )
+		select (select order_id from orders where customer_id = cart.customer_id order by order_id desc limit 1), product_id, total_price
+		,order_quantity, product_name from cart 
+		<foreach collection="list" item="cart_id">
+		where cart_id = #{cart_id}
+		</foreach> 
+	</insert>
 
 </mapper>

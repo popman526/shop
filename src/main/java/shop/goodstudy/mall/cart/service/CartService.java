@@ -14,5 +14,7 @@ public interface CartService {
 	boolean delete(List<Long> products, String id);
 	boolean updateCount(int count, long pid, String cid);
 	boolean checkExist(long pid, String cid);
+	boolean cartOrder(List<Long> products, String cid);
+	List<Cart> getChecked(String id);
 	
 }//end of CartService

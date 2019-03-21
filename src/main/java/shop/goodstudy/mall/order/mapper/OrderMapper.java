@@ -15,4 +15,6 @@ public interface OrderMapper {
 	public List<OrderVO> selectOrder() throws Exception;
 	public int deleteOrder(int order_id) throws Exception;
 	public int deleteOrderDetail(int order_id) throws Exception;
+	public int insertOrderDetails(List<OrderDetailVO> list) throws Exception;
+	public int insertCartOrder(List<Long> list);
 }

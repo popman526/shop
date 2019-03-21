@@ -1,14 +1,8 @@
 package shop.goodstudy.mall.order.controller;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.coobird.thumbnailator.Thumbnails;
-import shop.goodstudy.mall.customer.model.Customer;
-import shop.goodstudy.mall.image.mapper.ImageMapper;
-import shop.goodstudy.mall.image.model.Thumbnail;
+import shop.goodstudy.mall.cart.service.CartService;
 import shop.goodstudy.mall.image.service.ImageService;
 import shop.goodstudy.mall.order.mapper.OrderMapper;
 import shop.goodstudy.mall.order.model.OrderDetailVO;
@@ -39,6 +30,8 @@ public class OrderListController {
 	private OrderService OrderServiceImpl;
 	@Autowired
 	private ImageService imageService;
+	@Autowired
+	private CartService cartService;
 	
 	@PostMapping("/order/product")
 	public ModelAndView insertOrder(  
@@ -93,5 +86,15 @@ public class OrderListController {
         return "redirect:/orderList";
         
     }
+	
+	@PostMapping("/order")
+	public String cartOrder(@RequestParam("cart_id") List<Long> list, @RequestParam("total") int total) throws Exception {
+		
+		OrderVO order = new OrderVO();
+		order.setOrder_total_price(total);
+		OrderServiceImpl.insertCartOrder(order,list);
+		
+		return "redirect:/orderList";
+	}
 	
 }
