@@ -23,10 +23,11 @@ public class Cart {
 	private String product_name;
 	private long total_price;
 	private Date rg_date;
+	private int checked;
 	
 	@Builder
 	public Cart(long cart_id, long product_id, String customer_id, long order_quantity, long product_price,
-			String product_name, long total_price, Date rg_date) {
+			String product_name, long total_price, Date rg_date, int checked) {
 		super();
 		this.cart_id = cart_id;
 		this.product_id = product_id;
@@ -36,6 +37,7 @@ public class Cart {
 		this.product_name = product_name;
 		this.total_price = total_price;
 		this.rg_date = rg_date;
+		this.checked = checked;
 	}
 	
 }
