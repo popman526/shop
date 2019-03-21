@@ -6,10 +6,30 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
+<link rel="stylesheet" type="text/css" href="/css/slide_style.css"  >
 <%@ include file="/WEB-INF/jsp/include/header.jspf"%>
 </head>
 <body>
 	<%@ include file="/WEB-INF/jsp/include/navigation.jspf"%>
+	
+	
+	<div class="slideshow-container"  >
+		<c:forEach items="${sliderProduct}" var="each">
+			<div class="mySlides">
+				<img src="/image/downloadMainImage?product_id=${each.product_id}" id="slider_img"  width="100%", height="400" >
+			</div>
+		</c:forEach>
+		<div><a class="prev" onclick="plusSlides(-1)">&#10094;</a> </div>
+		<div><a class="next" onclick="plusSlides(1)">&#10095;</a></div>
+	</div>
+	<br>
+	<div style="text-align: center">
+		<span class="dot" onclick="currentSlide(1)"></span> 
+		<span class="dot" onclick="currentSlide(2)"></span> 
+		<span class="dot" onclick="currentSlide(3)"></span>
+		<span class="dot" onclick="currentSlide(4)"></span>
+		<span class="dot" onclick="currentSlide(5)"></span>
+	</div>
 
 	<div class="container" id="main">
 		<div class="col-md-12 col-sm-12 col-lg-10 col-lg-offset-1">
@@ -189,4 +209,49 @@
 </body>
 <script src="/js/cookie.js"></script>
 <script src="/js/home.js"></script>
+<script type="text/javascript">
+	var slideIndex = 1;
+	showSlides(slideIndex);
+	autoslide = setInterval(function() { showSlides() }, 2000);
+	
+	function plusSlides(n) {
+	    clearInterval(autoslide);
+	    showSlides(slideIndex += n);
+	    after();
+	}
+
+	function currentSlide(n) {
+		clearInterval(autoslide);
+		showSlides(slideIndex = n);
+		after();
+	}
+	
+	function after() {
+           clearInterval(autoslide);  
+           autoslide = setInterval(function() { showSlides() }, 2000);
+    }
+
+	function showSlides(n) {
+	  if( typeof n == 'undefined') {
+		  slideIndex ++;
+		  n = slideIndex;
+	  }	
+	  
+	  var i;
+	  var slides = document.getElementsByClassName("mySlides");
+	  var dots = document.getElementsByClassName("dot");
+	  
+	  if (n > slides.length) {slideIndex = 1}    
+	  if (n < 1) {slideIndex = slides.length}
+	  for (i = 0; i < slides.length; i++) {
+	      slides[i].style.display = "none";  
+	  }
+	  for (i = 0; i < dots.length; i++) {
+	    dots[i].className = dots[i].className.replace(" active", "");
+	  }
+	  slides[slideIndex-1].style.display = "block";  
+	  dots[slideIndex-1].className += " active";
+	} 
+</script>
+
 </html>

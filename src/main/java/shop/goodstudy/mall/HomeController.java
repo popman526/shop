@@ -40,6 +40,14 @@ public class HomeController {
 		};
 		ModelAndView mav = pagingUtils.getPagingMav(request.getParameter("pageNum"), null);
 		mav.setViewName("home");
+		
+		List<Product> sliderProduct;
+		// Home Slider용 Image -- Start
+		sliderProduct = productService.selectHomeSlider();
+		// Home Slider용 Image -- End
+
+		mav.addObject("sliderProduct", sliderProduct);
+		
 		return mav;
 	}
 	

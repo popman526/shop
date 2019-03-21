@@ -39,6 +39,10 @@ body {
 	padding-left: 30px;
 }
 
+.ui-autocomplete-loading {
+    background: white url(../images/ui-anim_basic_16x16.gif) right center no-repeat;
+}
+
 .header {
 	background-color: #ffffff;
 	border-width: 0;
@@ -608,9 +612,7 @@ h3, h4, h5 {
 	margin-top: 123px;
 }
 
-}
 #paging {
-	display:;
 	position: relative;
 	line-height: 1em;
 }
